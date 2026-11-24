@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
 <link rel="icon" href="data:," />
-<title>STARFALL — Neon Void</title>
+<title>PETALFALL — Sakura Dusk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#07060E; --violet:#6D28D9; --pink:#FB3E81; --solar:#FF9A54;
-    --ice:#A5F3FC; --bone:#F5F5F7; --dim:rgba(245,245,247,.62);
-    --panel:rgba(10,8,24,.72); --line:rgba(165,243,252,.18);
+    --void:#2B1B22; --plum:#2B1B22; --peach:#FFD9B0; --sakura:#FFB7C5; --rose:#E4577A;
+    --cream:#FFF3E4; --matcha:#A8C686; --gold:#F2C14E;
+    --bone:#FFF3E4; --dim:rgba(255,243,228,.68);
+    --panel:rgba(43,27,34,.78); --line:rgba(255,183,197,.22);
+    --ice:#FFF3E4; --pink:#E4577A; --solar:#F2C14E;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;background:var(--void);color:var(--bone);
     font-family:"Space Grotesk",system-ui,sans-serif;overflow:hidden}
   button{font-family:inherit;min-height:44px;cursor:pointer}
-  button:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+  button:focus-visible{outline:2px solid var(--sakura);outline-offset:3px}
   #game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
 
   /* ---------- overlays shared ---------- */
@@ -28,24 +30,24 @@
   .hidden{display:none !important}
 
   /* ---------- title ---------- */
-  #title-screen{background:radial-gradient(ellipse at 50% 110%, rgba(109,40,217,.20), transparent 55%);overflow-y:auto;justify-content:flex-start;padding-top:max(24px,4vh);padding-bottom:36px}
-  .title-kicker{color:var(--ice);font-size:13px;letter-spacing:.35em;font-weight:600;margin:0 0 10px}
-  h1.title{font-family:"Unbounded",sans-serif;font-weight:900;margin:0;
-    font-size:clamp(44px,11vw,118px);line-height:.95;letter-spacing:.02em;color:var(--bone);
-    text-shadow:0 0 18px rgba(251,62,129,.55),0 0 60px rgba(255,154,84,.35),0 0 120px rgba(109,40,217,.5)}
-  .title-sub{font-family:"Unbounded",sans-serif;font-weight:500;margin:14px 0 0;
-    font-size:clamp(15px,3.4vw,30px);letter-spacing:.55em;color:var(--solar);
-    text-shadow:0 0 24px rgba(255,154,84,.6);text-indent:.55em}
+  #title-screen{background:radial-gradient(ellipse at 50% 110%, rgba(255,217,176,.18), transparent 60%);overflow-y:auto;justify-content:flex-start;padding-top:max(24px,4vh);padding-bottom:36px}
+  .title-kicker{color:var(--sakura);font-size:13px;letter-spacing:.28em;font-weight:600;margin:0 0 10px}
+  h1.title{font-family:"Fraunces",serif;font-weight:900;margin:0;
+    font-size:clamp(48px,11vw,118px);line-height:.95;letter-spacing:.01em;color:var(--cream);
+    text-shadow:0 2px 24px rgba(228,87,122,.45),0 0 60px rgba(255,183,197,.35)}
+  .title-sub{font-family:"Fraunces",serif;font-weight:500;margin:14px 0 0;font-style:italic;
+    font-size:clamp(18px,3.4vw,32px);letter-spacing:.18em;color:var(--peach);
+    text-shadow:0 0 24px rgba(255,217,176,.5)}
   .title-lore{max-width:520px;color:var(--dim);font-size:15px;line-height:1.65;margin:22px 0 0}
-  #play-btn{margin-top:30px;border:2px solid var(--solar);background:rgba(255,154,84,.10);
-    color:var(--bone);font-family:"Unbounded",sans-serif;font-weight:700;font-size:19px;
-    letter-spacing:.18em;padding:16px 58px;border-radius:6px;min-height:60px;
-    box-shadow:0 0 24px rgba(255,154,84,.45),inset 0 0 18px rgba(255,154,84,.15);
+  #play-btn{margin-top:30px;border:2px solid var(--gold);background:rgba(242,193,78,.12);
+    color:var(--cream);font-family:"Fraunces",serif;font-weight:700;font-size:20px;
+    letter-spacing:.06em;padding:16px 58px;border-radius:999px;min-height:60px;
+    box-shadow:0 8px 28px rgba(228,87,122,.28),inset 0 0 18px rgba(242,193,78,.12);
     transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
-  #play-btn:hover{background:rgba(255,154,84,.22);transform:translateY(-2px) scale(1.03);
-    box-shadow:0 0 44px rgba(255,154,84,.75),inset 0 0 22px rgba(255,154,84,.25)}
+  #play-btn:hover{background:rgba(242,193,78,.24);transform:translateY(-2px) scale(1.03);
+    box-shadow:0 12px 36px rgba(228,87,122,.35)}
   .best-row{display:flex;gap:28px;margin-top:26px;color:var(--dim);font-size:14px}
-  .best-row b{color:var(--ice);font-size:19px;display:block;font-family:"Unbounded",sans-serif;font-weight:700}
+  .best-row b{color:var(--sakura);font-size:19px;display:block;font-family:"Fraunces",serif;font-weight:700}
   .howto{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:24px;
     padding:12px 18px;border:1px solid var(--line);border-radius:8px;background:var(--panel);
     font-size:13px;color:var(--dim);max-width:640px}
@@ -53,17 +55,17 @@
   .toggles{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center}
   .toggle-btn{border:1px solid var(--line);background:var(--panel);color:var(--dim);
     border-radius:999px;padding:8px 18px;font-size:13px;font-weight:600;min-height:40px}
-  .toggle-btn[aria-pressed="true"]{color:var(--ice);border-color:var(--ice)}
-  .footer-line{position:absolute;bottom:14px;left:0;right:0;font-size:11.5px;color:rgba(245,245,247,.38);
+  .toggle-btn[aria-pressed="true"]{color:var(--sakura);border-color:var(--sakura)}
+  .footer-line{position:absolute;bottom:14px;left:0;right:0;font-size:11.5px;color:rgba(255,243,228,.42);
     padding:0 16px}
 
   /* ---------- entry / login ---------- */
-  #entry-screen{background:radial-gradient(ellipse at 50% 110%, rgba(109,40,217,.22), transparent 55%);overflow-y:auto;justify-content:flex-start;padding-top:max(28px,5vh);padding-bottom:28px}
-  .entry-wordmark{font-family:"Unbounded",sans-serif;font-weight:900;margin:0;
-    font-size:clamp(38px,9vw,72px);line-height:.95;letter-spacing:.02em;color:var(--bone);
-    text-shadow:0 0 18px rgba(251,62,129,.55),0 0 60px rgba(255,154,84,.35),0 0 120px rgba(109,40,217,.5)}
-  .entry-sub{font-family:"Unbounded",sans-serif;font-weight:500;margin:10px 0 0;
-    font-size:clamp(12px,2.6vw,18px);letter-spacing:.55em;color:var(--solar);text-indent:.55em}
+  #entry-screen{background:radial-gradient(ellipse at 50% 110%, rgba(255,217,176,.16), transparent 60%);overflow-y:auto;justify-content:flex-start;padding-top:max(28px,5vh);padding-bottom:28px}
+  .entry-wordmark{font-family:"Fraunces",serif;font-weight:900;margin:0;
+    font-size:clamp(40px,9vw,76px);line-height:.95;letter-spacing:.01em;color:var(--cream);
+    text-shadow:0 2px 24px rgba(228,87,122,.45)}
+  .entry-sub{font-family:"Fraunces",serif;font-weight:500;font-style:italic;margin:10px 0 0;
+    font-size:clamp(14px,2.6vw,20px);letter-spacing:.18em;color:var(--peach)}
   .auth-panel{margin-top:28px;width:min(400px,100%);background:var(--panel);
     border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;text-align:left;
     backdrop-filter:blur(6px);box-shadow:0 18px 50px rgba(0,0,0,.45)}
@@ -71,91 +73,101 @@
     border-radius:8px;padding:4px;margin-bottom:18px}
   .auth-tab{flex:1;border:0;background:transparent;color:var(--dim);border-radius:6px;
     padding:10px 8px;font-weight:700;font-size:14px;min-height:44px}
-  .auth-tab[aria-selected="true"]{background:rgba(255,154,84,.18);color:var(--bone);
-    box-shadow:inset 0 0 0 1px rgba(255,154,84,.45)}
-  .auth-tab:focus-visible,.auth-input:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
-  .auth-label{display:block;font-size:13px;font-weight:600;color:var(--bone);margin:14px 0 6px}
+  .auth-tab[aria-selected="true"]{background:rgba(255,183,197,.22);color:var(--cream);
+    box-shadow:inset 0 0 0 1px rgba(255,183,197,.5)}
+  .auth-tab:focus-visible,.auth-input:focus-visible{outline:2px solid var(--sakura);outline-offset:2px}
+  .auth-label{display:block;font-size:13px;font-weight:600;color:var(--cream);margin:14px 0 6px}
   .auth-label:first-of-type{margin-top:0}
-  .auth-input{width:100%;background:rgba(7,6,14,.85);border:1px solid var(--line);border-radius:8px;
-    color:var(--bone);padding:12px 14px;font:inherit;font-size:15px;min-height:48px}
-  .auth-input::placeholder{color:rgba(245,245,247,.38)}
+  .auth-input{width:100%;background:rgba(30,16,22,.9);border:1px solid var(--line);border-radius:10px;
+    color:var(--cream);padding:12px 14px;font:inherit;font-size:15px;min-height:48px}
+  .auth-input::placeholder{color:rgba(255,243,228,.38)}
   .auth-error{display:none;margin:14px 0 0;padding:10px 12px;border-radius:8px;
-    background:rgba(251,62,129,.12);border:1px solid rgba(251,62,129,.45);color:#FDA4AF;
+    background:rgba(228,87,122,.14);border:1px solid rgba(228,87,122,.5);color:#FFC2CE;
     font-size:13.5px;line-height:1.45}
   .auth-error.show{display:block}
-  .auth-submit{width:100%;margin-top:18px;border:2px solid var(--solar);background:rgba(255,154,84,.14);
-    color:var(--bone);font-family:"Unbounded",sans-serif;font-weight:700;font-size:15px;
-    letter-spacing:.08em;padding:13px 20px;border-radius:8px;box-shadow:0 0 20px rgba(255,154,84,.35)}
-  .auth-submit:hover{background:rgba(255,154,84,.26)}
-  .auth-note{margin:14px 0 0;font-size:12px;line-height:1.5;color:rgba(245,245,247,.48);text-align:center}
+  .auth-submit{width:100%;margin-top:18px;border:2px solid var(--gold);background:rgba(242,193,78,.14);
+    color:var(--cream);font-family:"Fraunces",serif;font-weight:700;font-size:16px;
+    letter-spacing:.04em;padding:13px 20px;border-radius:999px;box-shadow:0 6px 20px rgba(228,87,122,.25)}
+  .auth-submit:hover{background:rgba(242,193,78,.26)}
+  .auth-note{margin:14px 0 0;font-size:12px;line-height:1.5;color:rgba(255,243,228,.5);text-align:center}
   .auth-switch{margin:12px 0 0;font-size:13px;color:var(--dim);text-align:center}
-  .auth-switch button{background:none;border:0;color:var(--ice);font-weight:700;padding:4px 6px;min-height:auto;text-decoration:underline}
-  #welcome-screen{background:rgba(4,3,10,.55)}
-  .welcome-text{font-family:"Unbounded",sans-serif;font-weight:900;font-size:clamp(30px,7vw,58px);
-    margin:0;line-height:1.15;color:var(--bone);text-shadow:0 0 30px rgba(255,154,84,.6)}
-  .welcome-text span{color:var(--solar)}
+  .auth-switch button{background:none;border:0;color:var(--sakura);font-weight:700;padding:4px 6px;min-height:auto;text-decoration:underline}
+  #welcome-screen{background:rgba(43,27,34,.55)}
+  .welcome-text{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(32px,7vw,60px);
+    margin:0;line-height:1.15;color:var(--cream);text-shadow:0 2px 28px rgba(228,87,122,.5)}
+  .welcome-text span{color:var(--sakura)}
   .welcome-sub{color:var(--dim);margin-top:12px;font-size:15px}
   .pilot-line{margin-top:18px;color:var(--dim);font-size:14px}
-  .pilot-line b{color:var(--bone)}
-  .welcome-back{margin:16px 0 0;color:var(--ice);font-size:15px;font-weight:600;min-height:20px}
-  .logout-btn{border:1px solid var(--line);background:var(--panel);color:var(--bone);
+  .pilot-line b{color:var(--cream)}
+  .welcome-back{margin:16px 0 0;color:var(--sakura);font-size:15px;font-weight:600;min-height:20px}
+  .logout-btn{border:1px solid var(--line);background:var(--panel);color:var(--cream);
     border-radius:999px;padding:8px 18px;font-size:13px;font-weight:600;min-height:40px}
-  .logout-btn:hover{border-color:var(--pink);color:#FDA4AF}
+  .logout-btn:hover{border-color:var(--rose);color:#FFC2CE}
 
   /* ---------- HUD ---------- */
   #hud{position:fixed;inset:0;pointer-events:none;z-index:5;font-family:"Space Grotesk",sans-serif}
   .hud-tl{position:absolute;top:16px;left:16px}
   .hud-label{font-size:11px;letter-spacing:.2em;color:var(--dim);margin-bottom:5px}
   #hp-track{width:min(220px,38vw);height:12px;border:1px solid var(--line);border-radius:4px;background:rgba(0,0,0,.5);overflow:hidden}
-  #hp-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--solar),var(--pink));transition:width .15s ease}
-  #hp-fill.low{background:var(--pink)}
-  #shield-note{font-size:11px;color:var(--ice);margin-top:4px;min-height:14px}
+  #hp-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--sakura),var(--rose));transition:width .15s ease}
+  #hp-fill.low{background:var(--rose)}
+  #shield-note{font-size:11px;color:var(--cream);margin-top:4px;min-height:14px}
+  #lantern-pips{display:flex;gap:7px;margin-top:7px;align-items:center}
+  .lantern-pip{width:15px;height:19px;border-radius:4px 4px 2px 2px;border:1.5px solid rgba(255,243,228,.45);background:rgba(20,10,14,.6);position:relative}
+  .lantern-pip::before{content:"";position:absolute;top:-5px;left:2px;right:2px;height:4px;border-radius:2px;background:rgba(255,243,228,.45)}
+  .lantern-pip.lit{background:radial-gradient(circle at 50% 55%, #FFE9A8 0%, #F2C14E 55%, rgba(242,193,78,.25) 100%);border-color:#F2C14E;box-shadow:0 0 10px rgba(242,193,78,.75)}
+  .lantern-pip.out{opacity:.55}
+  #blessing-note{font-size:11px;color:var(--gold);margin-top:3px;min-height:14px;font-weight:600}
+  #centre-pop{position:absolute;top:34%;left:0;right:0;text-align:center;opacity:0;transition:opacity .25s ease;pointer-events:none}
+  #centre-pop.show{opacity:1}
+  #centre-pop .cp-title{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(24px,5.5vw,44px);color:var(--gold);text-shadow:0 2px 26px rgba(242,193,78,.65)}
+  #centre-pop .cp-sub{color:var(--cream);font-size:14px;margin-top:5px;letter-spacing:.08em}
   .hud-tr{position:absolute;top:16px;right:16px;text-align:right}
-  #score-val{font-family:"Unbounded",sans-serif;font-weight:700;font-size:clamp(18px,3.4vw,26px);color:var(--bone);
-    text-shadow:0 0 16px rgba(255,154,84,.5)}
-  #combo-val{font-size:14px;color:var(--solar);font-weight:700;min-height:18px}
+  #score-val{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(18px,3.4vw,26px);color:var(--cream);
+    text-shadow:0 0 16px rgba(242,193,78,.5)}
+  #combo-val{font-size:14px;color:var(--gold);font-weight:700;min-height:18px}
   #wave-val{font-size:12px;color:var(--dim);letter-spacing:.15em}
   #wave-banner{position:absolute;top:22%;left:0;right:0;text-align:center;opacity:0;transition:opacity .3s ease}
   #wave-banner.show{opacity:1}
-  #wave-banner .wb-title{font-family:"Unbounded",sans-serif;font-weight:700;font-size:clamp(26px,6vw,48px);
-    color:var(--bone);text-shadow:0 0 30px rgba(251,62,129,.7)}
-  #wave-banner .wb-sub{color:var(--ice);font-size:14px;margin-top:6px;letter-spacing:.2em}
+  #wave-banner .wb-title{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(26px,6vw,48px);
+    color:var(--cream);text-shadow:0 2px 30px rgba(228,87,122,.6)}
+  #wave-banner .wb-sub{color:var(--sakura);font-size:14px;margin-top:6px;letter-spacing:.14em}
   #dash-wrap{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);text-align:center}
   #dash-label{font-size:10.5px;letter-spacing:.25em;color:var(--dim);margin-bottom:5px}
-  #dash-track{width:120px;height:8px;border:1px solid var(--line);border-radius:99px;background:rgba(0,0,0,.5);overflow:hidden;margin:0 auto}
-  #dash-fill{height:100%;width:100%;background:var(--ice);box-shadow:0 0 10px rgba(165,243,252,.8)}
+  #dash-track{width:120px;height:8px;border:1px solid var(--line);border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden;margin:0 auto}
+  #dash-fill{height:100%;width:100%;background:var(--gold);box-shadow:0 0 10px rgba(242,193,78,.8)}
   #hurt-vignette{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;
-    background:radial-gradient(ellipse at center, transparent 55%, rgba(251,62,129,.45) 100%)}
+    background:radial-gradient(ellipse at center, transparent 55%, rgba(228,87,122,.45) 100%)}
   #hud-btns{position:absolute;top:64px;right:16px;display:flex;gap:8px;pointer-events:auto}
   .hud-btn{border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:8px;
     padding:6px 12px;font-size:12px;font-weight:600;min-height:36px}
 
   /* ---------- pause / game over ---------- */
-  .dim-screen{background:rgba(4,3,10,.78);backdrop-filter:blur(3px)}
-  .big-title{font-family:"Unbounded",sans-serif;font-weight:900;font-size:clamp(28px,6.5vw,58px);
-    margin:0;line-height:1.1;text-shadow:0 0 34px rgba(251,62,129,.6)}
+  .dim-screen{background:rgba(43,27,34,.82);backdrop-filter:blur(3px)}
+  .big-title{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(30px,6.5vw,60px);
+    margin:0;line-height:1.1;text-shadow:0 2px 30px rgba(228,87,122,.5)}
   .stat-grid{display:flex;gap:34px;margin:26px 0 6px;flex-wrap:wrap;justify-content:center}
-  .stat-grid div b{font-family:"Unbounded",sans-serif;font-size:26px;display:block;color:var(--ice)}
+  .stat-grid div b{font-family:"Fraunces",serif;font-size:28px;display:block;color:var(--sakura)}
   .stat-grid div span{font-size:12px;color:var(--dim);letter-spacing:.15em}
   .btn-row{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;justify-content:center}
-  .btn-primary{border:2px solid var(--solar);background:rgba(255,154,84,.14);color:var(--bone);
-    font-family:"Unbounded",sans-serif;font-weight:700;font-size:15px;letter-spacing:.12em;
-    padding:13px 34px;border-radius:6px;box-shadow:0 0 20px rgba(255,154,84,.4)}
-  .btn-primary:hover{background:rgba(255,154,84,.26)}
-  .btn-ghost{border:1px solid var(--line);background:var(--panel);color:var(--bone);
-    font-weight:600;font-size:15px;padding:13px 30px;border-radius:6px}
+  .btn-primary{border:2px solid var(--gold);background:rgba(242,193,78,.14);color:var(--cream);
+    font-family:"Fraunces",serif;font-weight:700;font-size:16px;letter-spacing:.06em;
+    padding:13px 34px;border-radius:999px;box-shadow:0 6px 20px rgba(228,87,122,.3)}
+  .btn-primary:hover{background:rgba(242,193,78,.26)}
+  .btn-ghost{border:1px solid var(--line);background:var(--panel);color:var(--cream);
+    font-weight:600;font-size:15px;padding:13px 30px;border-radius:999px}
   .pause-hint{color:var(--dim);font-size:13px;margin-top:16px}
 
   /* ---------- mobile controls ---------- */
   #touch-ui{position:fixed;inset:0;z-index:7;pointer-events:none}
   #stick-base{position:absolute;bottom:84px;left:22px;width:112px;height:112px;border-radius:50%;
-    border:1.5px solid var(--line);background:rgba(165,243,252,.05);pointer-events:auto;touch-action:none}
+    border:1.5px solid var(--line);background:rgba(255,183,197,.07);pointer-events:auto;touch-action:none}
   #stick-knob{position:absolute;left:50%;top:50%;width:48px;height:48px;border-radius:50%;
-    background:rgba(165,243,252,.25);border:1.5px solid var(--ice);transform:translate(-50%,-50%)}
+    background:rgba(255,183,197,.28);border:1.5px solid var(--sakura);transform:translate(-50%,-50%)}
   #dash-btn{position:absolute;bottom:96px;right:22px;width:84px;height:84px;border-radius:50%;
-    border:2px solid var(--ice);background:rgba(165,243,252,.12);color:var(--ice);
-    font-family:"Unbounded",sans-serif;font-weight:700;font-size:13px;pointer-events:auto;touch-action:none}
-  #dash-btn:active{background:rgba(165,243,252,.3)}
+    border:2px solid var(--gold);background:rgba(242,193,78,.14);color:var(--gold);
+    font-family:"Fraunces",serif;font-weight:700;font-size:14px;pointer-events:auto;touch-action:none}
+  #dash-btn:active{background:rgba(242,193,78,.3)}
   @media (hover:hover) and (pointer:fine){ #touch-ui{display:none} }
   @media (max-width:480px){
     .howto{font-size:12px;padding:10px 12px}
@@ -169,15 +181,21 @@
 </style>
 </head>
 <body>
-<canvas id="game" aria-label="STARFALL Neon Void game arena"></canvas>
+<canvas id="game" aria-label="PETALFALL Sakura Dusk game grove"></canvas>
 <div id="hurt-vignette"></div>
 
 <!-- HUD -->
 <div id="hud" class="hidden" aria-hidden="true">
   <div class="hud-tl">
-    <div class="hud-label">Hull integrity</div>
+    <div class="hud-label">Bloom</div>
     <div id="hp-track"><div id="hp-fill"></div></div>
     <div id="shield-note"></div>
+    <div id="blessing-note"></div>
+    <div id="lantern-pips" aria-label="Shrine lanterns">
+      <span class="lantern-pip lit" id="lantern-pip-0"></span>
+      <span class="lantern-pip lit" id="lantern-pip-1"></span>
+      <span class="lantern-pip lit" id="lantern-pip-2"></span>
+    </div>
   </div>
   <div class="hud-tr">
     <div id="score-val">0</div>
@@ -188,7 +206,8 @@
     <button class="hud-btn" id="hud-sound-btn" type="button">Sound: on</button>
     <button class="hud-btn" id="hud-pause-btn" type="button">Pause</button>
   </div>
-  <div id="wave-banner"><div class="wb-title" id="wb-title">Wave 1</div><div class="wb-sub" id="wb-sub">Hold the void</div></div>
+  <div id="wave-banner"><div class="wb-title" id="wb-title">Wave 1</div><div class="wb-sub" id="wb-sub">The wisps gather</div></div>
+  <div id="centre-pop"><div class="cp-title" id="cp-title"></div><div class="cp-sub" id="cp-sub"></div></div>
   <div id="dash-wrap"><div id="dash-label">Dash</div><div id="dash-track"><div id="dash-fill"></div></div></div>
 </div>
 
@@ -199,42 +218,42 @@
 </div>
 
 <!-- Entry / login screen -->
-<section id="entry-screen" class="screen" aria-label="STARFALL login">
-  <h1 class="entry-wordmark">STARFALL</h1>
-  <p class="entry-sub">NEON VOID</p>
+<section id="entry-screen" class="screen" aria-label="PETALFALL login">
+  <h1 class="entry-wordmark">PETALFALL</h1>
+  <p class="entry-sub">Sakura Dusk</p>
   <div class="auth-panel">
     <div class="auth-tabs" role="tablist" aria-label="Account options">
       <button class="auth-tab" id="tab-login" type="button" role="tab" aria-selected="true">Log in</button>
       <button class="auth-tab" id="tab-signup" type="button" role="tab" aria-selected="false">Create account</button>
     </div>
     <form id="auth-form" novalidate>
-      <label class="auth-label" for="auth-name">Pilot name</label>
+      <label class="auth-label" for="auth-name">Guardian name</label>
       <input class="auth-input" id="auth-name" type="text" autocomplete="username" placeholder="e.g. Rafay" maxlength="24" />
       <label class="auth-label" for="auth-pass">Password</label>
       <input class="auth-input" id="auth-pass" type="password" autocomplete="current-password" placeholder="At least 4 characters" />
       <p class="auth-error" id="auth-error" role="alert"></p>
       <button class="auth-submit" id="auth-submit" type="submit">Log in</button>
     </form>
-    <p class="auth-switch" id="auth-switch-wrap"><span id="auth-switch-text">New to the void?</span> <button type="button" id="auth-switch-btn">Create an account</button></p>
-    <p class="auth-note">Profiles are stored on this device.</p>
+    <p class="auth-switch" id="auth-switch-wrap"><span id="auth-switch-text">New to the grove?</span> <button type="button" id="auth-switch-btn">Create an account</button></p>
+    <p class="auth-note" id="auth-note">Profiles are stored on this device.</p>
   </div>
 </section>
 
 <!-- Welcome state -->
 <section id="welcome-screen" class="screen hidden" aria-label="Welcome">
-  <h2 class="welcome-text">Let&rsquo;s play, <span id="welcome-name">Pilot</span></h2>
-  <p class="welcome-sub">The void is waiting.</p>
+  <h2 class="welcome-text">Let&rsquo;s play, <span id="welcome-name">Guardian</span></h2>
+  <p class="welcome-sub">The grove is waiting at dusk.</p>
 </section>
 
 <!-- Title screen -->
-<section id="title-screen" class="screen hidden" aria-label="STARFALL title screen">
-  <p class="title-kicker">A lone starfighter · a collapsing void</p>
-  <h1 class="title">STARFALL</h1>
-  <p class="title-sub">NEON VOID</p>
-  <p class="title-lore">The void is collapsing and its spawn are pouring through the tear. You are the last fighter on the line. Hold it — wave after wave — for as long as you can.</p>
+<section id="title-screen" class="screen hidden" aria-label="PETALFALL title screen">
+  <p class="title-kicker">A paper-crane guardian · a shrine grove at dusk</p>
+  <h1 class="title">PETALFALL</h1>
+  <p class="title-sub">Sakura Dusk</p>
+  <p class="title-lore">Dusk settles over the shrine grove and shadow wisps drift in with the petals, hunting the three shrine lanterns. You are the paper-crane guardian. Hold the grove, keep the lanterns lit — dash through a dark one to relight it.</p>
   <p class="welcome-back" id="welcome-back"></p>
   <button id="play-btn" type="button">Play</button>
-  <p class="pilot-line" id="pilot-line">Pilot: <b id="pilot-name"></b></p>
+  <p class="pilot-line" id="pilot-line">Guardian: <b id="pilot-name"></b></p>
   <div class="best-row">
     <div>Best score<b id="best-score">0</b></div>
     <div>Best wave<b id="best-wave">0</b></div>
@@ -245,19 +264,20 @@
     <span><b>Fire</b> hold click</span>
     <span><b>Dash</b> Shift / Space</span>
     <span><b>Pause</b> Esc / P</span>
+    <span><b>Dash</b> through a dark lantern to relight it</span>
   </div>
   <div class="toggles">
     <button class="toggle-btn" id="sound-toggle" type="button" aria-pressed="true">Sound: on</button>
     <button class="toggle-btn" id="shake-toggle" type="button" aria-pressed="false">Reduce shake: off</button>
     <button class="logout-btn" id="logout-btn" type="button">Log out</button>
   </div>
-  <p class="footer-line">Built by Ember with frontend-design, game-feel, algorithmic-art and web-artifacts-builder.</p>
+  <p class="footer-line">PETALFALL — built by Ember with frontend-design, game-feel, algorithmic-art and web-artifacts-builder.</p>
 </section>
 
 <!-- Pause -->
 <section id="pause-screen" class="screen dim-screen hidden" aria-label="Paused">
   <h2 class="big-title">Paused</h2>
-  <p class="pause-hint">The void waits. It is patient. You should not be.</p>
+  <p class="pause-hint">The petals pause mid-air. Take a breath.</p>
   <div class="btn-row">
     <button class="btn-primary" id="resume-btn" type="button">Resume</button>
     <button class="btn-ghost" id="pause-menu-btn" type="button">Menu</button>
@@ -266,7 +286,7 @@
 
 <!-- Game over -->
 <section id="over-screen" class="screen dim-screen hidden" aria-label="Game over">
-  <h2 class="big-title">The void claims you</h2>
+  <h2 class="big-title">The garden rests</h2>
   <div class="stat-grid">
     <div><b id="final-score">0</b><span>Score</span></div>
     <div><b id="final-wave">1</b><span>Wave reached</span></div>
@@ -281,7 +301,7 @@
 <script>
 "use strict";
 /* ============================================================
-   STARFALL — Neon Void · twin-stick arena action
+   PETALFALL — Sakura Dusk · twin-stick arena action
    Juice follows the game-feel tier table via one feedback() path.
    ============================================================ */
 var canvas = document.getElementById("game");
@@ -294,37 +314,65 @@ try { soundOn = sessionStorage.getItem("starfall-sound") !== "off"; } catch (e) 
 var reduceShake = false;
 
 /* ---------- local pilot profiles (stored on this device) ---------- */
+/* Storage goes through storeGet/storeSet: localStorage when the browser
+   keeps it, always mirrored in memory. In webviews that block or clear
+   localStorage, the old code silently saved nothing — signup appeared to
+   work, then every later login failed with "guardian not found". The memory
+   mirror keeps the create → logout → login loop working for the session
+   no matter what the browser does with localStorage. */
 var ACCOUNTS_KEY = "starfall_accounts";
 var SESSION_KEY = "starfall_session";
 var currentPilot = null;
-function getAccounts() {
-  try { var raw = localStorage.getItem(ACCOUNTS_KEY); var parsed = raw ? JSON.parse(raw) : {}; return (parsed && typeof parsed === "object") ? parsed : {}; }
-  catch (e) { return {}; }
+var memStore = {};
+var storageWorks = false;
+(function probeStorage() {
+  try {
+    localStorage.setItem("starfall_probe", "1");
+    storageWorks = localStorage.getItem("starfall_probe") === "1";
+    localStorage.removeItem("starfall_probe");
+  } catch (e) { storageWorks = false; }
+})();
+function storeGet(key) {
+  try {
+    var v = localStorage.getItem(key);
+    if (v !== null && v !== undefined) { memStore[key] = v; return v; }
+  } catch (e) {}
+  return Object.prototype.hasOwnProperty.call(memStore, key) ? memStore[key] : null;
 }
-function saveAccounts(acc) { try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(acc)); } catch (e) {} }
+function storeSet(key, val) {
+  memStore[key] = val;
+  try { localStorage.setItem(key, val); } catch (e) {}
+}
+function storeRemove(key) {
+  delete memStore[key];
+  try { localStorage.removeItem(key); } catch (e) {}
+}
+function getAccounts() {
+  var raw = storeGet(ACCOUNTS_KEY);
+  var parsed = null;
+  try { parsed = raw ? JSON.parse(raw) : {}; } catch (e) { parsed = {}; }
+  return (parsed && typeof parsed === "object") ? parsed : {};
+}
+function saveAccounts(acc) { storeSet(ACCOUNTS_KEY, JSON.stringify(acc)); }
 function findAccountKey(acc, name) {
   var lower = String(name).toLowerCase();
   for (var k in acc) { if (Object.prototype.hasOwnProperty.call(acc, k) && k.toLowerCase() === lower) return k; }
   return null;
 }
-function getSession() { try { return localStorage.getItem(SESSION_KEY) || null; } catch (e) { return null; } }
-function setSession(name) { try { if (name) localStorage.setItem(SESSION_KEY, name); else localStorage.removeItem(SESSION_KEY); } catch (e) {} }
+function getSession() { return storeGet(SESSION_KEY); }
+function setSession(name) { if (name) storeSet(SESSION_KEY, name); else storeRemove(SESSION_KEY); }
 function bestKey(kind) { return "starfall_best_" + kind + "_" + encodeURIComponent(currentPilot || "guest"); }
 
 /* ---------- persistent best (per pilot) ---------- */
 function loadBest() {
-  try {
-    return {
-      score: parseInt(localStorage.getItem(bestKey("score")) || "0", 10) || 0,
-      wave:  parseInt(localStorage.getItem(bestKey("wave"))  || "0", 10) || 0
-    };
-  } catch (e) { return { score: 0, wave: 0 }; }
+  return {
+    score: parseInt(storeGet(bestKey("score")) || "0", 10) || 0,
+    wave:  parseInt(storeGet(bestKey("wave"))  || "0", 10) || 0
+  };
 }
 function saveBest() {
-  try {
-    localStorage.setItem(bestKey("score"), String(best.score));
-    localStorage.setItem(bestKey("wave"),  String(best.wave));
-  } catch (e) {}
+  storeSet(bestKey("score"), String(best.score));
+  storeSet(bestKey("wave"),  String(best.wave));
 }
 var best = loadBest();
 
@@ -341,6 +389,8 @@ var el = {
   bestScore: $("best-score"), bestWave: $("best-wave"),
   finalScore: $("final-score"), finalWave: $("final-wave"), finalBest: $("final-best"),
   soundToggle: $("sound-toggle"), shakeToggle: $("shake-toggle"),
+  blessingNote: $("blessing-note"), centrePop: $("centre-pop"), cpTitle: $("cp-title"), cpSub: $("cp-sub"),
+  lanternPips: [$("lantern-pip-0"), $("lantern-pip-1"), $("lantern-pip-2")],
   hudSound: $("hud-sound-btn")
 };
 el.bestScore.textContent = best.score;
@@ -387,49 +437,94 @@ var sfx = {
   dash:    function () { noiseBurst(0.16, 0.12, 2400); tone(300, 900, 0.14, "sine", 0.06); },
   pickup:  function () { tone(660, 660, 0.08, "sine", 0.1); tone(990, 990, 0.12, "sine", 0.1, 0.07); },
   hurt:    function () { tone(160, 60, 0.22, "sawtooth", 0.2); noiseBurst(0.15, 0.14, 600); },
-  wave:    function () { tone(392, 392, 0.12, "triangle", 0.1); tone(587, 587, 0.18, "triangle", 0.1, 0.1); }
+  wave:    function () { tone(392, 392, 0.12, "triangle", 0.1); tone(587, 587, 0.18, "triangle", 0.1, 0.1); },
+  chime:   function () { tone(1318, 1318, 0.22, "sine", 0.12); tone(1760, 1760, 0.3, "sine", 0.1, 0.09); tone(1046, 1046, 0.18, "sine", 0.07, 0.18); },
+  bless:   function () { tone(784, 784, 0.14, "sine", 0.11); tone(1175, 1175, 0.22, "sine", 0.11, 0.1); }
 };
 
-/* ---------- background: procedural nebula + starfield (algorithmic-art) ---------- */
+/* ---------- background: dusk sky, hills, torii + drifting petals ---------- */
 var nebula = null;
 var stars = [];
+var petals = [];
 function buildBackground() {
   nebula = document.createElement("canvas");
-  nebula.width = Math.max(2, Math.floor(W / 2));
-  nebula.height = Math.max(2, Math.floor(H / 2));
+  nebula.width = Math.max(2, Math.floor(W));
+  nebula.height = Math.max(2, Math.floor(H));
   var nctx = nebula.getContext("2d");
-  nctx.fillStyle = "#07060E";
-  nctx.fillRect(0, 0, nebula.width, nebula.height);
-  var blobs = [
-    [0.22, 0.28, 0.55, "rgba(109,40,217,0.34)"],
-    [0.80, 0.18, 0.42, "rgba(109,40,217,0.22)"],
-    [0.62, 0.78, 0.50, "rgba(251,62,129,0.10)"],
-    [0.12, 0.85, 0.38, "rgba(255,154,84,0.08)"],
-    [0.45, 0.45, 0.30, "rgba(76,29,149,0.20)"]
-  ];
-  for (var i = 0; i < blobs.length; i++) {
-    var b = blobs[i], bx = b[0] * nebula.width, by = b[1] * nebula.height, br = b[2] * Math.max(nebula.width, nebula.height);
-    var g = nctx.createRadialGradient(bx, by, 0, bx, by, br);
-    g.addColorStop(0, b[3]); g.addColorStop(1, "rgba(0,0,0,0)");
-    nctx.fillStyle = g; nctx.fillRect(0, 0, nebula.width, nebula.height);
+  var w = nebula.width, h = nebula.height;
+  var sky = nctx.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, "#2B1B22"); sky.addColorStop(0.45, "#4A2438");
+  sky.addColorStop(0.72, "#8A4A5E"); sky.addColorStop(1, "#FFD9B0");
+  nctx.fillStyle = sky; nctx.fillRect(0, 0, w, h);
+  /* sun glow low */
+  var sg = nctx.createRadialGradient(w*0.5, h*0.92, 0, w*0.5, h*0.92, w*0.55);
+  sg.addColorStop(0, "rgba(255,217,176,0.55)"); sg.addColorStop(1, "rgba(255,217,176,0)");
+  nctx.fillStyle = sg; nctx.fillRect(0, 0, w, h);
+  /* layered hills */
+  function hill(baseY, amp, color, seed) {
+    nctx.fillStyle = color; nctx.beginPath(); nctx.moveTo(0, h);
+    for (var x = 0; x <= w; x += 8) {
+      var y = baseY + Math.sin(x*0.008+seed)*amp + Math.sin(x*0.02+seed*2)*amp*0.35;
+      nctx.lineTo(x, y);
+    }
+    nctx.lineTo(w, h); nctx.closePath(); nctx.fill();
   }
-  stars = [];
-  for (var s = 0; s < 150; s++) {
-    stars.push({ x: Math.random(), y: Math.random(), z: 0.25 + Math.random() * 0.75,
-                 r: Math.random() * 1.6 + 0.4, tw: Math.random() * Math.PI * 2 });
+  hill(h*0.68, 18, "rgba(43,27,34,0.35)", 1.2);
+  hill(h*0.78, 14, "rgba(43,27,34,0.55)", 3.4);
+  hill(h*0.88, 10, "rgba(30,16,22,0.85)", 5.1);
+  /* torii silhouette low centre (menu screens read it behind panels) */
+  nctx.fillStyle = "rgba(24,12,18,0.9)";
+  var tw = Math.min(220, w*0.34), tx = w/2 - tw/2, ty = h*0.80;
+  nctx.fillRect(tx, ty, tw, 10);
+  nctx.fillRect(tx+14, ty+14, tw-28, 7);
+  nctx.fillRect(tx+tw*0.18, ty, 10, h-ty);
+  nctx.fillRect(tx+tw*0.82-10, ty, 10, h-ty);
+  nctx.fillRect(w/2-4, ty, 8, h-ty-8);
+  /* faint ground blossom patches for gameplay field feel */
+  for (var bi = 0; bi < 26; bi++) {
+    var bx = Math.random()*w, by = Math.random()*h, br = 18+Math.random()*46;
+    var bg = nctx.createRadialGradient(bx, by, 0, bx, by, br);
+    bg.addColorStop(0, "rgba(255,183,197,0.07)"); bg.addColorStop(1, "rgba(255,183,197,0)");
+    nctx.fillStyle = bg; nctx.beginPath(); nctx.arc(bx, by, br, 0, Math.PI*2); nctx.fill();
   }
+  petals = [];
+  var count = 42;
+  for (var s = 0; s < count; s++) {
+    petals.push({ x: Math.random(), y: Math.random(), z: 0.3 + Math.random()*0.7,
+      size: 4 + Math.random()*6, rot: Math.random()*Math.PI*2, vr: (Math.random()-0.5)*1.6,
+      sway: Math.random()*Math.PI*2, speed: 0.012 + Math.random()*0.02 });
+  }
+  stars = petals;
+}
+function drawPetalShape(size) {
+  ctx.beginPath();
+  ctx.moveTo(0, -size);
+  ctx.bezierCurveTo(size*0.9, -size*0.4, size*0.7, size*0.7, 0, size);
+  ctx.bezierCurveTo(-size*0.7, size*0.7, -size*0.9, -size*0.4, 0, -size);
+  ctx.fill();
 }
 function drawBackground(t, dt) {
   if (nebula) ctx.drawImage(nebula, 0, 0, W, H);
-  else { ctx.fillStyle = "#07060E"; ctx.fillRect(0, 0, W, H); }
-  for (var i = 0; i < stars.length; i++) {
-    var s = stars[i];
-    s.y += dt * 0.008 * s.z * (state === "playing" ? 2.2 : 1);
-    if (s.y > 1) { s.y -= 1; s.x = Math.random(); }
-    var a = 0.3 + 0.55 * s.z * (0.75 + 0.25 * Math.sin(t * 0.001 + s.tw));
-    ctx.globalAlpha = a;
-    ctx.fillStyle = s.z > 0.8 ? "#A5F3FC" : "#F5F5F7";
-    ctx.fillRect(s.x * W, s.y * H, s.r, s.r);
+  else { ctx.fillStyle = "#2B1B22"; ctx.fillRect(0, 0, W, H); }
+  if (state === "playing" || state === "paused" || state === "over") {
+    ctx.fillStyle = "rgba(43,27,34,0.42)"; ctx.fillRect(0, 0, W, H);
+  }
+  var density = (state === "playing") ? 0.55 : 1;
+  for (var i = 0; i < petals.length; i++) {
+    if (i / petals.length > density) break;
+    var s = petals[i];
+    s.y += dt * s.speed * (state === "playing" ? 1.3 : 1);
+    s.x += Math.sin(t*0.001 + s.sway) * dt * 0.012;
+    s.rot += s.vr * dt;
+    if (s.y > 1.03) { s.y = -0.03; s.x = Math.random(); }
+    if (s.x > 1.03) s.x = -0.03; if (s.x < -0.03) s.x = 1.03;
+    ctx.save();
+    ctx.translate(s.x * W + Math.sin(t*0.0009 + s.sway)*14, s.y * H);
+    ctx.rotate(s.rot);
+    ctx.globalAlpha = 0.35 + 0.45 * s.z;
+    ctx.fillStyle = s.z > 0.75 ? "#FFD9B0" : "#FFB7C5";
+    drawPetalShape(s.size * s.z + 2);
+    ctx.restore();
   }
   ctx.globalAlpha = 1;
 }
@@ -464,6 +559,95 @@ var mouse = { x: 0, y: 0, down: false };
 var touchMove = { x: 0, y: 0, active: false };
 var touchAim = { x: 0, y: 0, active: false };
 
+/* ---------- shrine lanterns ---------- */
+var lanterns = [
+  { fx: 0.20, fy: 0.26, x: 0, y: 0, r: 15, lit: true, flash: 0 },
+  { fx: 0.80, fy: 0.28, x: 0, y: 0, r: 15, lit: true, flash: 0 },
+  { fx: 0.50, fy: 0.74, x: 0, y: 0, r: 15, lit: true, flash: 0 }
+];
+function layoutLanterns() { for (var i = 0; i < lanterns.length; i++) { lanterns[i].x = lanterns[i].fx * W; lanterns[i].y = lanterns[i].fy * H; } }
+function resetLanterns() { layoutLanterns(); for (var i = 0; i < lanterns.length; i++) { lanterns[i].lit = true; lanterns[i].flash = 0; } refreshLanternPips(); }
+function litCount() { var c = 0; for (var i = 0; i < lanterns.length; i++) if (lanterns[i].lit) c++; return c; }
+function refreshLanternPips() { for (var i = 0; i < lanterns.length; i++) { if (el.lanternPips[i]) el.lanternPips[i].className = "lantern-pip " + (lanterns[i].lit ? "lit" : "out"); } }
+function nearestLitLantern(x, y) {
+  var bestI = -1, bestD = 1e12;
+  for (var i = 0; i < lanterns.length; i++) { if (!lanterns[i].lit) continue; var d = (lanterns[i].x - x) * (lanterns[i].x - x) + (lanterns[i].y - y) * (lanterns[i].y - y); if (d < bestD) { bestD = d; bestI = i; } }
+  return bestI;
+}
+function dimLantern(i, x, y) {
+  if (i < 0 || !lanterns[i].lit) return;
+  lanterns[i].lit = false; lanterns[i].flash = 0;
+  refreshLanternPips();
+  feedback("medium", x, y, "#E4577A");
+  spawnDamageNumber(lanterns[i].x, lanterns[i].y - 18, "Lantern out!", "#E4577A");
+  sfx.hurt();
+}
+function relightLantern(i) {
+  if (i < 0 || lanterns[i].lit) return false;
+  lanterns[i].lit = true; lanterns[i].flash = 1;
+  refreshLanternPips();
+  feedback("medium", lanterns[i].x, lanterns[i].y, "#F2C14E");
+  spawnDamageNumber(lanterns[i].x, lanterns[i].y - 18, "Relit!", "#F2C14E");
+  sfx.chime();
+  return true;
+}
+
+/* ---------- golden petal blessings ---------- */
+var blessing = { kind: null, timer: 0 };
+var goldenPetal = null;
+var goldenTimer = 42;
+var BLESSINGS = {
+  radiant:    { name: "Radiant", sub: "Double score for 12s" },
+  untouchable:{ name: "Untouchable", sub: "Invulnerable for 12s" },
+  bloom:      { name: "Second Bloom", sub: "Bloom slowly regens for 12s" }
+};
+function spawnGoldenPetal() {
+  if (goldenPetal) return goldenPetal;
+  var fromLeft = Math.random() < 0.5;
+  goldenPetal = { x: fromLeft ? -24 : W + 24, y: H * (0.25 + Math.random() * 0.5),
+    vx: (fromLeft ? 1 : -1) * (26 + Math.random() * 10), t: Math.random() * 6, life: 10, r: 15 };
+  spawnDamageNumber(W / 2, H * 0.3, "A golden petal drifts by…", "#F2C14E");
+  return goldenPetal;
+}
+function grantBlessing(kind) {
+  var keysB = ["radiant", "untouchable", "bloom"];
+  if (!kind || !BLESSINGS[kind]) kind = keysB[Math.floor(Math.random() * keysB.length)];
+  blessing.kind = kind; blessing.timer = 12;
+  showCentrePop(BLESSINGS[kind].name, BLESSINGS[kind].sub, 1900);
+  sfx.bless();
+  return kind;
+}
+
+/* ---------- combo ranks ---------- */
+var COMBO_RANKS = { 2: "Sprout", 3: "Bloom", 4: "Full Bloom", 5: "Radiant Garden" };
+var lastComboRank = 1;
+
+/* ---------- named wave types ---------- */
+var waveType = "gather";
+var runSeed = 0;
+var WAVE_TYPES = {
+  gather: { name: "The wisps gather", lanternRatio: 0.33 },
+  rush:   { name: "Wisp Rush", lanternRatio: 0.2 },
+  siege:  { name: "Lantern Siege", lanternRatio: 0.75 },
+  shadow: { name: "Oni's Shadow", lanternRatio: 0.33 },
+  oni:    { name: "Storm Oni", lanternRatio: 0.33 }
+};
+function pickWaveType(n) {
+  if (n % 5 === 0) return "oni";
+  if (n === 1) return "gather";
+  var order = ["gather", "rush", "siege", "shadow"];
+  return order[(n - 1 + runSeed) % order.length];
+}
+
+/* ---------- centre pop (blessings, enrage) ---------- */
+var centrePopTimer = null;
+function showCentrePop(title, sub, dur) {
+  el.cpTitle.textContent = title; el.cpSub.textContent = sub || "";
+  el.centrePop.classList.add("show");
+  if (centrePopTimer) clearTimeout(centrePopTimer);
+  centrePopTimer = setTimeout(function () { el.centrePop.classList.remove("show"); }, dur || 1700);
+}
+
 function newPlayer() {
   return {
     x: W / 2, y: H / 2, vx: 0, vy: 0, r: 13, ang: -Math.PI / 2,
@@ -477,7 +661,7 @@ mouse.x = W / 2; mouse.y = H / 4;
 
 /* ---------- game feel: one feedback path, three tiers ---------- */
 function feedback(tier, x, y, color) {
-  var traumaAmt = 0, stop = 0, pCount = 0, pColor = color || "#FF9A54";
+  var traumaAmt = 0, stop = 0, pCount = 0, pColor = color || "#F2C14E";
   if (tier === "small")       { traumaAmt = 0.14; stop = 0;     pCount = 3; }
   else if (tier === "medium") { traumaAmt = 0.38; stop = 0.05;  pCount = 10; }
   else if (tier === "large")  { traumaAmt = 0.85; stop = 0.12;  pCount = 30; zoomPulse = Math.min(1, zoomPulse + 0.6); }
@@ -504,6 +688,9 @@ function waveComposition(n) {
   var i, boss = (n % 5 === 0);
   var chasers = 4 + n * 2, weavers = n >= 2 ? 2 + n : 0, gunners = n >= 3 ? Math.floor(n / 2) : 0,
       splitters = n >= 4 ? Math.floor((n - 2) / 2) : 0;
+  if (waveType === "rush") { chasers = Math.floor(chasers * 1.8) + 4; weavers = Math.min(weavers, 2); gunners = 0; splitters = 0; }
+  else if (waveType === "siege") { chasers = Math.floor(chasers * 1.2); }
+  else if (waveType === "shadow") { chasers += 2; weavers += 2; gunners += 2; splitters += 1; }
   for (i = 0; i < chasers; i++) q.push("chaser");
   for (i = 0; i < weavers; i++) q.push("weaver");
   for (i = 0; i < gunners; i++) q.push("gunner");
@@ -514,12 +701,12 @@ function waveComposition(n) {
   return q;
 }
 var ENEMY_DEF = {
-  chaser:   { hp: 2, speed: 118, r: 14, score: 100, color: "#FB3E81", dmg: 12 },
-  weaver:   { hp: 1, speed: 168, r: 11, score: 150, color: "#FF5C8A", dmg: 10 },
-  gunner:   { hp: 3, speed: 96,  r: 15, score: 250, color: "#C084FC", dmg: 10 },
-  splitter: { hp: 4, speed: 62,  r: 21, score: 200, color: "#FB7185", dmg: 14 },
-  mini:     { hp: 1, speed: 205, r: 8,  score: 50,  color: "#FDA4AF", dmg: 8 },
-  maw:      { hp: 60, speed: 34, r: 46, score: 2000, color: "#FB3E81", dmg: 20 }
+  chaser:   { hp: 2, speed: 118, r: 14, score: 100, color: "#E4577A", dmg: 12 },
+  weaver:   { hp: 1, speed: 168, r: 11, score: 150, color: "#E4577A", dmg: 10 },
+  gunner:   { hp: 3, speed: 96,  r: 15, score: 250, color: "#E4577A", dmg: 10 },
+  splitter: { hp: 4, speed: 62,  r: 21, score: 200, color: "#D94F6A", dmg: 14 },
+  mini:     { hp: 1, speed: 205, r: 8,  score: 50,  color: "#FF8FA3", dmg: 8 },
+  maw:      { hp: 60, speed: 34, r: 46, score: 2000, color: "#E4577A", dmg: 20 }
 };
 function spawnEnemy(type, px, py) {
   var def = ENEMY_DEF[type];
@@ -534,19 +721,27 @@ function spawnEnemy(type, px, py) {
   }
   var e = { type: type, x: x, y: y, vx: 0, vy: 0, hp: def.hp, maxHp: def.hp, r: def.r,
             speed: def.speed * (1 + Math.min(0.5, wave * 0.03)), t: Math.random() * 10,
-            fireCd: 1 + Math.random(), burstCd: 2.5, spawnCd: 3, flash: 0, active: true };
+            fireCd: 1 + Math.random(), burstCd: 2.5, spawnCd: 3, shadeCd: 3, flash: 0, active: true,
+            targetLantern: -1, enraged: false };
+  if (waveType === "shadow" && type !== "maw") { e.hp += 1; e.maxHp += 1; }
+  if (type === "chaser") {
+    if (waveType === "rush") e.speed *= 1.35;
+    var ratio = (WAVE_TYPES[waveType] || WAVE_TYPES.gather).lanternRatio;
+    if (px === undefined && Math.random() < ratio) e.targetLantern = nearestLitLantern(x, y);
+  }
   enemies.push(e);
   return e;
 }
 function startWave(n) {
   wave = n;
+  waveType = pickWaveType(n);
   spawnQueue = waveComposition(n);
   spawnTimer = 0.4;
   waveActive = true;
   el.wave.textContent = "Wave " + n;
   var boss = (n % 5 === 0);
-  el.wbTitle.textContent = boss ? "Wave " + n + " — Void Maw" : "Wave " + n;
-  el.wbSub.textContent = boss ? "Something huge is coming through" : "Hold the void";
+  el.wbTitle.textContent = boss ? "Wave " + n + " — Storm Oni" : "Wave " + n + " — " + WAVE_TYPES[waveType].name;
+  el.wbSub.textContent = boss ? "A great shadow stirs among the trees" : (waveType === "siege" ? "They are coming for the lanterns — dash to relight" : waveType === "rush" ? "Fast wisps, incoming" : waveType === "shadow" ? "An elite mix — hold steady" : "The wisps gather");
   el.banner.classList.add("show");
   setTimeout(function () { el.banner.classList.remove("show"); }, 2100);
   sfx.wave();
@@ -566,7 +761,7 @@ function fireBullet() {
   /* muzzle spark */
   var p = poolGet(particles);
   if (p) { p.x = b.x; p.y = b.y; p.vx = Math.cos(player.ang) * 60; p.vy = Math.sin(player.ang) * 60;
-           p.max = p.life = 0.08; p.size = 3.4; p.color = "#FFD9A0"; }
+           p.max = p.life = 0.08; p.size = 3.4; p.color = "#FFE9A8"; }
   sfx.shoot();
 }
 function enemyShoot(e) {
@@ -592,12 +787,14 @@ function killEnemy(e, idx) {
   enemies.splice(idx, 1);
   kills++;
   comboChain++; comboTimer = 2.5;
-  var gained = ENEMY_DEF[e.type].score * comboMult();
+  var mNow = comboMult();
+  if (mNow > lastComboRank && COMBO_RANKS[mNow]) { lastComboRank = mNow; spawnDamageNumber(player.x, player.y - 30, COMBO_RANKS[mNow] + "!", "#F2C14E"); }
+  var gained = ENEMY_DEF[e.type].score * mNow * (blessing.kind === "radiant" && blessing.timer > 0 ? 2 : 1);
   score += gained;
-  spawnDamageNumber(e.x, e.y, "+" + gained, e.type === "maw" ? "#A5F3FC" : "#FF9A54");
-  if (e.type === "maw") { feedback("large", e.x, e.y, "#FB3E81"); feedback("large", e.x, e.y, "#A5F3FC"); sfx.bigBoom(); }
+  spawnDamageNumber(e.x, e.y, "+" + gained, e.type === "maw" ? "#FFF3E4" : "#F2C14E");
+  if (e.type === "maw") { feedback("large", e.x, e.y, "#E4577A"); feedback("large", e.x, e.y, "#FFF3E4"); sfx.bigBoom(); }
   else if (e.type === "splitter") {
-    feedback("medium", e.x, e.y, "#FB7185"); sfx.boom();
+    feedback("medium", e.x, e.y, "#E4577A"); sfx.boom();
     spawnEnemy("mini", e.x - 14, e.y); spawnEnemy("mini", e.x + 14, e.y + 6);
   } else { feedback("medium", e.x, e.y, ENEMY_DEF[e.type].color); sfx.boom(); }
   maybeDropPickup(e.x, e.y);
@@ -605,15 +802,16 @@ function killEnemy(e, idx) {
 }
 function damagePlayer(amount) {
   if (!player.alive || player.dashTime > 0 || player.invuln > 0) return false;
+  if (blessing.kind === "untouchable" && blessing.timer > 0) return false;
   if (player.shield > 0) {
     player.invuln = 0.6;
-    feedback("small", player.x, player.y, "#A5F3FC");
+    feedback("small", player.x, player.y, "#FFF3E4");
     return true;
   }
   player.hp -= amount;
   player.invuln = 0.9;
   comboChain = 0; comboTimer = 0;
-  feedback("medium", player.x, player.y, "#FB3E81");
+  feedback("medium", player.x, player.y, "#E4577A");
   el.vignette.style.transition = "none"; el.vignette.style.opacity = "1";
   requestAnimationFrame(function () {
     el.vignette.style.transition = "opacity .5s ease"; el.vignette.style.opacity = "0";
@@ -637,7 +835,7 @@ function tryDash() {
   player.dashDx = dx / len; player.dashDy = dy / len;
   player.dashTime = 0.18; player.dashCd = 1.6; player.ghostCd = 0;
   sfx.dash();
-  feedback("small", player.x, player.y, "#A5F3FC");
+  feedback("small", player.x, player.y, "#FFF3E4");
   return true;
 }
 
@@ -646,7 +844,25 @@ function update(dt) {
   timeNow += dt;
   /* combo decay */
   if (comboTimer > 0) { comboTimer -= dt; if (comboTimer <= 0) comboChain = 0; }
-  el.combo.textContent = comboChain >= 2 ? "Combo ×" + comboMult() : "";
+  var cm = comboMult();
+  if (comboChain < 2) lastComboRank = 1;
+  el.combo.textContent = comboChain >= 2 ? "Combo ×" + cm + (COMBO_RANKS[cm] ? " · " + COMBO_RANKS[cm] : "") : "";
+
+  /* blessings + golden petal timers */
+  if (blessing.timer > 0) { blessing.timer -= dt; if (blessing.timer <= 0) blessing.kind = null; }
+  if (blessing.kind === "bloom" && blessing.timer > 0 && player.alive) player.hp = Math.min(player.maxHp, player.hp + 2.5 * dt);
+  if (!goldenPetal) { goldenTimer -= dt; if (goldenTimer <= 0) spawnGoldenPetal(); }
+  if (goldenPetal) {
+    var gp = goldenPetal;
+    gp.t += dt; gp.life -= dt;
+    gp.x += gp.vx * dt; gp.y += Math.sin(gp.t * 2.2) * 14 * dt;
+    if (gp.life <= 0 || gp.x < -60 || gp.x > W + 60) { goldenPetal = null; goldenTimer = 40 + Math.random() * 10; }
+    else if (player.alive && Math.hypot(player.x - gp.x, player.y - gp.y) < player.r + gp.r + 4) {
+      grantBlessing(null);
+      feedback("medium", gp.x, gp.y, "#F2C14E");
+      goldenPetal = null; goldenTimer = 40 + Math.random() * 10;
+    }
+  }
 
   /* spawning */
   if (waveActive && spawnQueue.length > 0) {
@@ -655,8 +871,15 @@ function update(dt) {
   }
   if (waveActive && spawnQueue.length === 0 && enemies.length === 0) {
     waveActive = false; breather = 3;
+    var litBonus = litCount() * 150;
+    if (litBonus > 0) { score += litBonus; el.score.textContent = score; spawnDamageNumber(W / 2, H * 0.38, "Lantern bonus +" + litBonus, "#F2C14E"); }
+    if (litCount() === 3) {
+      var bk = ["repair", "overdrive", "aegis"][Math.floor(Math.random() * 3)];
+      pickups.push({ x: W / 2, y: H / 2, vx: 0, vy: 0, kind: bk, life: 9, r: 11, t: 0 });
+      spawnDamageNumber(W / 2, H * 0.44, "All lanterns lit — a gift appears", "#FFB7C5");
+    }
     el.wbTitle.textContent = "Wave " + wave + " cleared";
-    el.wbSub.textContent = "Next wave incoming";
+    el.wbSub.textContent = litBonus > 0 ? "Lantern bonus +" + litBonus + " · petals settle" : "Petals settle — the next wave gathers";
     el.banner.classList.add("show");
     setTimeout(function () { el.banner.classList.remove("show"); }, 1600);
   }
@@ -686,6 +909,9 @@ function update(dt) {
     p.vx = p.dashDx * 1150; p.vy = p.dashDy * 1150;
     p.ghostCd -= dt;
     if (p.ghostCd <= 0) { var g = poolGet(afterimages); if (g) { g.x = p.x; g.y = p.y; g.ang = p.ang; g.life = 0.3; } p.ghostCd = 0.03; }
+    for (var li = 0; li < lanterns.length; li++) {
+      if (!lanterns[li].lit && Math.hypot(p.x - lanterns[li].x, p.y - lanterns[li].y) < lanterns[li].r + p.r + 8) relightLantern(li);
+    }
   } else {
     var ACC = 1500, MAXS = 305;
     p.vx += mx * ACC * dt; p.vy += my * ACC * dt;
@@ -697,6 +923,11 @@ function update(dt) {
   p.x += p.vx * dt; p.y += p.vy * dt;
   p.x = Math.max(p.r + 4, Math.min(W - p.r - 4, p.x));
   p.y = Math.max(p.r + 4, Math.min(H - p.r - 4, p.y));
+  for (var ci = 0; ci < lanterns.length; ci++) {
+    var cl = lanterns[ci], cdx = p.x - cl.x, cdy = p.y - cl.y, cd = Math.hypot(cdx, cdy), cMin = cl.r + p.r;
+    if (cd > 0.01 && cd < cMin) { p.x = cl.x + cdx / cd * cMin; p.y = cl.y + cdy / cd * cMin; }
+    else if (cd <= 0.01) { p.x = cl.x + cMin; }
+  }
   p.thrust = mLen;
   /* engine trail */
   if ((mLen > 0.1 || p.dashTime > 0) && Math.random() < 0.75) {
@@ -706,7 +937,7 @@ function update(dt) {
       tp.x = p.x + Math.cos(back) * 14; tp.y = p.y + Math.sin(back) * 14;
       tp.vx = Math.cos(back) * 90 + (Math.random() - 0.5) * 30;
       tp.vy = Math.sin(back) * 90 + (Math.random() - 0.5) * 30;
-      tp.max = tp.life = 0.3; tp.size = 2.2; tp.color = p.dashTime > 0 ? "#A5F3FC" : "#FF9A54";
+      tp.max = tp.life = 0.3; tp.size = 2.2; tp.color = p.dashTime > 0 ? "#FFF3E4" : "#F2C14E";
     }
   }
   /* aim */
@@ -723,9 +954,22 @@ function update(dt) {
   for (var i = enemies.length - 1; i >= 0; i--) {
     var e = enemies[i];
     e.t += dt; e.flash = Math.max(0, e.flash - dt * 6);
-    var dx = p.x - e.x, dy = p.y - e.y, dist = Math.hypot(dx, dy) || 1;
+    /* lantern-targeting wisps make for their lantern, not the player */
+    var txp = p.x, typ = p.y, targetingLantern = false;
+    if (e.type === "chaser" && e.targetLantern >= 0) {
+      if (lanterns[e.targetLantern] && lanterns[e.targetLantern].lit) { txp = lanterns[e.targetLantern].x; typ = lanterns[e.targetLantern].y; targetingLantern = true; }
+      else e.targetLantern = -1;
+    }
+    var dx = txp - e.x, dy = typ - e.y, dist = Math.hypot(dx, dy) || 1;
+    var pdx2 = p.x - e.x, pdy2 = p.y - e.y, pdist = Math.hypot(pdx2, pdy2) || 1;
     var ux = dx / dist, uy = dy / dist, vx = 0, vy = 0;
     if (e.type === "chaser" || e.type === "mini") { vx = ux * e.speed; vy = uy * e.speed; }
+    if (targetingLantern && dist < e.r + lanterns[e.targetLantern].r + 2) {
+      var lt = e.targetLantern;
+      dimLantern(lt, e.x, e.y);
+      enemies.splice(i, 1);
+      continue;
+    }
     else if (e.type === "weaver") {
       var px = -uy, py = ux, sway = Math.sin(e.t * 5.2) * 0.85;
       vx = (ux + px * sway) * e.speed; vy = (uy + py * sway) * e.speed;
@@ -739,9 +983,18 @@ function update(dt) {
     } else if (e.type === "splitter") { vx = ux * e.speed; vy = uy * e.speed; }
     else if (e.type === "maw") {
       vx = ux * e.speed; vy = uy * e.speed;
+      if (!e.enraged && e.hp <= e.maxHp / 2) {
+        e.enraged = true;
+        showCentrePop("The Oni rages!", "Faster bursts — it calls the Shades", 1900);
+        feedback("large", e.x, e.y, "#E4577A"); sfx.bigBoom();
+      }
       e.burstCd -= dt; e.spawnCd -= dt;
-      if (e.burstCd <= 0) { mawBurst(e); e.burstCd = 2.6; }
+      if (e.burstCd <= 0) { mawBurst(e); e.burstCd = e.enraged ? 1.4 : 2.6; }
       if (e.spawnCd <= 0 && enemies.length < 14) { spawnEnemy("chaser", e.x + 40, e.y); spawnEnemy("chaser", e.x - 40, e.y + 20); e.spawnCd = 4.5; }
+      if (e.enraged) {
+        e.shadeCd -= dt;
+        if (e.shadeCd <= 0 && enemies.length < 16) { spawnEnemy("weaver", e.x - 44, e.y + 10); spawnEnemy("weaver", e.x + 44, e.y - 10); e.shadeCd = 3.2; }
+      }
     }
     /* light separation */
     for (var j = 0; j < enemies.length; j++) {
@@ -753,8 +1006,8 @@ function update(dt) {
     e.x += vx * dt; e.y += vy * dt;
     e.x = Math.max(-60, Math.min(W + 60, e.x));
     e.y = Math.max(-60, Math.min(H + 60, e.y));
-    /* contact damage */
-    if (p.alive && dist < e.r + p.r - 2) damagePlayer(ENEMY_DEF[e.type].dmg);
+    /* contact damage (player distance) */
+    if (p.alive && pdist < e.r + p.r - 2) damagePlayer(ENEMY_DEF[e.type].dmg);
   }
 
   /* --- bullets --- */
@@ -768,7 +1021,7 @@ function update(dt) {
       var ddx = en.x - b.x, ddy = en.y - b.y;
       if (ddx * ddx + ddy * ddy < (en.r + 4) * (en.r + 4)) {
         b.active = false; en.hp -= 1; en.flash = 1; sfx.hit();
-        feedback("small", b.x, b.y, "#FFD9A0");
+        feedback("small", b.x, b.y, "#FFE9A8");
         if (en.hp <= 0) killEnemy(en, ei);
         break;
       }
@@ -781,7 +1034,7 @@ function update(dt) {
     var bdx = p.x - b.x, bdy = p.y - b.y;
     if (p.alive && bdx * bdx + bdy * bdy < (p.r + b.r) * (p.r + b.r)) {
       if (damagePlayer(10)) b.active = false;
-      else if (p.dashTime > 0 || p.invuln > 0) b.active = false;
+      else if (p.dashTime > 0 || p.invuln > 0 || (blessing.kind === "untouchable" && blessing.timer > 0)) b.active = false;
     }
   }
 
@@ -793,10 +1046,10 @@ function update(dt) {
     var pdx = p.x - pk.x, pdy = p.y - pk.y, pd = Math.hypot(pdx, pdy);
     if (pd < 90) { pk.x += (pdx / (pd || 1)) * 130 * dt; pk.y += (pdy / (pd || 1)) * 130 * dt; }
     if (pd < p.r + pk.r + 4) {
-      if (pk.kind === "repair") { p.hp = Math.min(p.maxHp, p.hp + 25); spawnDamageNumber(p.x, p.y, "+25 hull", "#A5F3FC"); }
-      if (pk.kind === "overdrive") { p.overdrive = 8; spawnDamageNumber(p.x, p.y, "Overdrive!", "#FF9A54"); }
-      if (pk.kind === "aegis") { p.shield = 10; spawnDamageNumber(p.x, p.y, "Aegis up", "#A5F3FC"); }
-      feedback("small", pk.x, pk.y, "#A5F3FC"); sfx.pickup();
+      if (pk.kind === "repair") { p.hp = Math.min(p.maxHp, p.hp + 25); spawnDamageNumber(p.x, p.y, "+25 bloom", "#FFF3E4"); }
+      if (pk.kind === "overdrive") { p.overdrive = 8; spawnDamageNumber(p.x, p.y, "Haste Charm!", "#F2C14E"); }
+      if (pk.kind === "aegis") { p.shield = 10; spawnDamageNumber(p.x, p.y, "Guardian Ward", "#FFF3E4"); }
+      feedback("small", pk.x, pk.y, "#FFF3E4"); sfx.pickup();
       pickups.splice(pi, 1); continue;
     }
     if (pk.life <= 0) pickups.splice(pi, 1);
@@ -808,7 +1061,9 @@ function update(dt) {
   el.hpFill.style.width = Math.max(0, p.hp) + "%";
   el.hpFill.className = p.hp <= 30 ? "low" : "";
   el.hpFill.id = "hp-fill";
-  el.shieldNote.textContent = p.shield > 0 ? "Aegis shield active" : (p.overdrive > 0 ? "Overdrive active" : "");
+  el.shieldNote.textContent = p.shield > 0 ? "Guardian Ward active" : (p.overdrive > 0 ? "Haste Charm active" : "");
+  el.blessingNote.textContent = (blessing.kind && blessing.timer > 0) ? BLESSINGS[blessing.kind].name + " · " + Math.ceil(blessing.timer) + "s" : "";
+  for (var fi = 0; fi < lanterns.length; fi++) lanterns[fi].flash = Math.max(0, lanterns[fi].flash - dt * 1.4);
   el.dashFill.style.width = ((1.6 - p.dashCd) / 1.6 * 100) + "%";
 }
 function updateFx(dt) {
@@ -825,66 +1080,108 @@ function updateFx(dt) {
 
 /* ---------- drawing ---------- */
 function drawShip(x, y, ang, alpha, ghost) {
+  /* paper-crane guardian: cream folded wings, gold beak + trim */
   ctx.save();
   ctx.translate(x, y); ctx.rotate(ang);
   ctx.globalAlpha = alpha;
-  if (!ghost) { ctx.shadowColor = "#FF9A54"; ctx.shadowBlur = 18; }
-  ctx.fillStyle = ghost ? "rgba(165,243,252,0.5)" : "#FF9A54";
-  ctx.beginPath();
-  ctx.moveTo(18, 0); ctx.lineTo(-12, 11); ctx.lineTo(-6, 0); ctx.lineTo(-12, -11);
-  ctx.closePath(); ctx.fill();
-  ctx.shadowBlur = 0;
-  ctx.fillStyle = ghost ? "rgba(165,243,252,0.6)" : "#FFF3E2";
-  ctx.beginPath(); ctx.arc(2, 0, 4.4, 0, Math.PI * 2); ctx.fill();
-  /* engine glow */
-  if (!ghost && player.thrust > 0.1) {
-    var fl = 8 + Math.random() * 7 + player.thrust * 6;
-    ctx.fillStyle = "rgba(165,243,252,0.85)";
-    ctx.beginPath(); ctx.moveTo(-8, 3.4); ctx.lineTo(-8 - fl, 0); ctx.lineTo(-8, -3.4); ctx.closePath(); ctx.fill();
+  if (ghost) {
+    ctx.fillStyle = "rgba(255,183,197,0.55)";
+    ctx.beginPath(); ctx.moveTo(0,-5); ctx.quadraticCurveTo(7,-2,5,7); ctx.quadraticCurveTo(0,4,-5,7); ctx.quadraticCurveTo(-7,-2,0,-5); ctx.fill();
+    ctx.restore(); ctx.globalAlpha = 1; return;
   }
+  ctx.shadowColor = "rgba(242,193,78,0.8)"; ctx.shadowBlur = 16;
+  /* warm gold wake */
+  if (player.thrust > 0.1) {
+    var fl = 10 + Math.random() * 7 + player.thrust * 8;
+    ctx.fillStyle = "rgba(242,193,78,0.75)";
+    ctx.beginPath(); ctx.moveTo(-10, 4); ctx.lineTo(-10 - fl, 0); ctx.lineTo(-10, -4); ctx.closePath(); ctx.fill();
+  }
+  /* folded wings */
+  ctx.fillStyle = "#FFF3E4";
+  ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(-4, 3); ctx.lineTo(-14, 14); ctx.lineTo(-16, 2); ctx.lineTo(-10, 0); ctx.lineTo(-16, -2); ctx.lineTo(-14, -14); ctx.lineTo(-4, -3); ctx.closePath(); ctx.fill();
+  ctx.shadowBlur = 0;
+  /* fold lines + gold trim */
+  ctx.strokeStyle = "rgba(242,193,78,0.9)"; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(14, 0); ctx.lineTo(-12, 0); ctx.moveTo(-4, 3); ctx.lineTo(-13, 12); ctx.moveTo(-4, -3); ctx.lineTo(-13, -12); ctx.stroke();
+  /* gold beak */
+  ctx.fillStyle = "#F2C14E";
+  ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(23, -2.2); ctx.lineTo(20, 0); ctx.lineTo(23, 2.2); ctx.closePath(); ctx.fill();
+  /* eye */
+  ctx.fillStyle = "#2B1B22"; ctx.beginPath(); ctx.arc(7, -2.5, 1.6, 0, Math.PI * 2); ctx.fill();
   ctx.restore();
   ctx.globalAlpha = 1;
 }
 function drawEnemy(e) {
   ctx.save(); ctx.translate(e.x, e.y);
   var col = e.flash > 0.4 ? "#FFFFFF" : ENEMY_DEF[e.type].color;
-  ctx.shadowColor = ENEMY_DEF[e.type].color; ctx.shadowBlur = 14;
-  ctx.fillStyle = col;
+  ctx.shadowColor = "rgba(228,87,122,0.8)"; ctx.shadowBlur = 12;
   if (e.type === "chaser") {
-    ctx.rotate(Math.atan2(player.y - e.y, player.x - e.x));
-    ctx.beginPath(); ctx.moveTo(15, 0); ctx.lineTo(-11, 10); ctx.lineTo(-6, 0); ctx.lineTo(-11, -10); ctx.closePath(); ctx.fill();
-  } else if (e.type === "weaver" || e.type === "mini") {
-    ctx.rotate(e.t * 4);
-    var r = e.r;
-    ctx.beginPath();
-    for (var k = 0; k < 6; k++) { var a = k * Math.PI / 3; var vx = Math.cos(a) * r, vy = Math.sin(a) * r; if (k === 0) ctx.moveTo(vx, vy); else ctx.lineTo(vx, vy); }
-    ctx.closePath(); ctx.fill();
-  } else if (e.type === "gunner") {
-    ctx.rotate(e.t * 0.9);
-    ctx.fillRect(-e.r, -e.r * 0.62, e.r * 2, e.r * 1.24);
-    ctx.fillStyle = "#07060E"; ctx.beginPath(); ctx.arc(0, 0, 6, 0, Math.PI * 2); ctx.fill();
-  } else if (e.type === "splitter") {
+    /* Wisp: inky blob with rose eyes */
+    var wob = 1 + Math.sin(e.t * 6) * 0.08;
+    ctx.scale(wob, 2 - wob > 0 ? 1 / wob : 1);
+    ctx.fillStyle = "#1E1016";
     ctx.beginPath(); ctx.arc(0, 0, e.r, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "rgba(7,6,14,0.55)";
-    ctx.beginPath(); ctx.arc(-6, -4, 5, 0, Math.PI * 2); ctx.arc(7, 5, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = col; ctx.lineWidth = 1.6; ctx.stroke();
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(-4.5, -2, 2.4, 0, Math.PI * 2); ctx.arc(4.5, -2, 2.4, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(0, 5, 3.2, 0, Math.PI); ctx.stroke();
+  } else if (e.type === "weaver" || e.type === "mini") {
+    /* Shade / Bud: flitting shadow petal */
+    ctx.rotate(e.t * 4);
+    ctx.fillStyle = e.type === "mini" ? "#3A1E2A" : "#24121C";
+    drawPetalShape(e.r);
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(0, -1, 2, 0, Math.PI * 2); ctx.fill();
+  } else if (e.type === "gunner") {
+    /* Lantern Imp: paper-lantern body */
+    ctx.fillStyle = "#FFD9B0";
+    ctx.beginPath(); ctx.ellipse(0, 0, e.r * 0.92, e.r * 1.05, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = col; ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(-e.r*0.6, -e.r*0.7); ctx.lineTo(-e.r*0.6, e.r*0.7); ctx.moveTo(0, -e.r); ctx.lineTo(0, e.r); ctx.moveTo(e.r*0.6, -e.r*0.7); ctx.lineTo(e.r*0.6, e.r*0.7); ctx.stroke();
+    ctx.fillStyle = "#2B1B22"; ctx.fillRect(-5, -e.r - 3, 10, 5); ctx.fillRect(-5, e.r - 2, 10, 5);
+    ctx.fillStyle = col; ctx.beginPath(); ctx.arc(-3.5, -1, 1.9, 0, Math.PI * 2); ctx.arc(3.5, -1, 1.9, 0, Math.PI * 2); ctx.fill();
+  } else if (e.type === "splitter") {
+    /* Bloom Husk */
+    ctx.fillStyle = "#3A1E2A";
+    ctx.beginPath(); ctx.arc(0, 0, e.r, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = col;
+    for (var pk2 = 0; pk2 < 5; pk2++) { var pa = pk2 * Math.PI * 2 / 5 + e.t * 0.6; ctx.save(); ctx.translate(Math.cos(pa) * e.r * 0.55, Math.sin(pa) * e.r * 0.55); ctx.rotate(pa); drawPetalShape(8); ctx.restore(); }
+    ctx.fillStyle = "#FFD9B0"; ctx.beginPath(); ctx.arc(0, 0, 4, 0, Math.PI * 2); ctx.fill();
   } else if (e.type === "maw") {
+    /* Storm Oni: large shadow mask orb */
     var pulse = 1 + Math.sin(e.t * 2.4) * 0.05;
     ctx.scale(pulse, pulse);
+    ctx.fillStyle = "#180C12";
     ctx.beginPath(); ctx.arc(0, 0, e.r, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#07060E";
-    ctx.beginPath(); ctx.arc(0, 0, e.r * 0.52, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#A5F3FC";
-    ctx.beginPath(); ctx.arc(0, 0, e.r * 0.2 + Math.sin(e.t * 3) * 2, 0, Math.PI * 2); ctx.fill();
-    ctx.rotate(e.t * 0.7);
-    ctx.strokeStyle = col; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(0, 0, e.r * 0.78, 0, Math.PI * 1.3); ctx.stroke();
+    ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.stroke();
+    /* horns */
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.moveTo(-e.r*0.62, -e.r*0.62); ctx.lineTo(-e.r*0.95, -e.r*1.05); ctx.lineTo(-e.r*0.28, -e.r*0.82); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(e.r*0.62, -e.r*0.62); ctx.lineTo(e.r*0.95, -e.r*1.05); ctx.lineTo(e.r*0.28, -e.r*0.82); ctx.closePath(); ctx.fill();
+    /* glowing eyes + mouth */
+    ctx.fillStyle = "#FFB7C5";
+    ctx.beginPath(); ctx.arc(-13, -6, 5, 0, Math.PI * 2); ctx.arc(13, -6, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#FFB7C5"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(0, 12, 13, 0.15 * Math.PI, 0.85 * Math.PI); ctx.stroke();
+    if (e.enraged) {
+      ctx.strokeStyle = "#FFE9A8"; ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.moveTo(-6, -e.r * 0.92); ctx.lineTo(-2, -e.r * 0.4); ctx.lineTo(-9, -e.r * 0.05); ctx.lineTo(-3, e.r * 0.4);
+      ctx.moveTo(e.r * 0.55, -e.r * 0.7); ctx.lineTo(e.r * 0.35, -e.r * 0.25); ctx.lineTo(e.r * 0.6, e.r * 0.15);
+      ctx.moveTo(2, e.r * 0.55); ctx.lineTo(-4, e.r * 0.85);
+      ctx.stroke();
+      ctx.fillStyle = "#E4577A";
+      ctx.beginPath(); ctx.arc(-13, -6, 6.2, 0, Math.PI * 2); ctx.arc(13, -6, 6.2, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.save(); ctx.rotate(e.t * 0.7); ctx.strokeStyle = "rgba(228,87,122,0.6)"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(0, 0, e.r * 0.8, 0, Math.PI * 1.3); ctx.stroke(); ctx.restore();
   }
   ctx.restore();
   /* hp bar for tough enemies */
   if (e.maxHp > 2 && e.hp < e.maxHp) {
     var w = e.r * 2;
     ctx.fillStyle = "rgba(0,0,0,0.55)"; ctx.fillRect(e.x - e.r, e.y - e.r - 12, w, 4);
-    ctx.fillStyle = "#FB3E81"; ctx.fillRect(e.x - e.r, e.y - e.r - 12, w * (e.hp / e.maxHp), 4);
+    ctx.fillStyle = "#E4577A"; ctx.fillRect(e.x - e.r, e.y - e.r - 12, w * (e.hp / e.maxHp), 4);
   }
 }
 function drawPickup(pk) {
@@ -892,17 +1189,54 @@ function drawPickup(pk) {
   ctx.save(); ctx.translate(pk.x, pk.y + bob); ctx.globalAlpha = blink;
   ctx.shadowBlur = 14;
   if (pk.kind === "repair") {
-    ctx.shadowColor = "#A5F3FC"; ctx.fillStyle = "#A5F3FC";
-    ctx.fillRect(-3, -10, 6, 20); ctx.fillRect(-10, -3, 20, 6);
+    /* Mending Petal — matcha */
+    ctx.shadowColor = "#A8C686"; ctx.fillStyle = "#A8C686";
+    drawPetalShape(10);
+    ctx.fillStyle = "#2B1B22"; ctx.beginPath(); ctx.arc(0, 0, 2.4, 0, Math.PI * 2); ctx.fill();
   } else if (pk.kind === "overdrive") {
-    ctx.shadowColor = "#FF9A54"; ctx.fillStyle = "#FF9A54";
+    /* Haste Charm — gold */
+    ctx.shadowColor = "#F2C14E"; ctx.fillStyle = "#F2C14E";
     ctx.beginPath(); ctx.moveTo(2, -11); ctx.lineTo(-7, 2); ctx.lineTo(-1, 2); ctx.lineTo(-3, 11); ctx.lineTo(8, -3); ctx.lineTo(1, -3); ctx.closePath(); ctx.fill();
   } else {
-    ctx.shadowColor = "#A5F3FC"; ctx.strokeStyle = "#A5F3FC"; ctx.lineWidth = 2.6;
+    /* Guardian Ward — cream ring */
+    ctx.shadowColor = "#FFF3E4"; ctx.strokeStyle = "#FFF3E4"; ctx.lineWidth = 2.6;
     ctx.beginPath(); ctx.arc(0, 0, 10, 0, Math.PI * 2); ctx.stroke();
     ctx.beginPath(); ctx.arc(0, 0, 4.5, 0, Math.PI * 2); ctx.stroke();
   }
   ctx.restore(); ctx.globalAlpha = 1;
+}
+function drawLantern(L, t) {
+  ctx.save(); ctx.translate(L.x, L.y);
+  /* warm glow when lit */
+  if (L.lit) {
+    var gr = 34 + Math.sin(t * 0.004 + L.x) * 4 + L.flash * 26;
+    var g = ctx.createRadialGradient(0, -4, 2, 0, -4, gr);
+    g.addColorStop(0, "rgba(255,233,168," + (0.5 + L.flash * 0.4) + ")"); g.addColorStop(1, "rgba(255,233,168,0)");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, -4, gr, 0, Math.PI * 2); ctx.fill();
+  }
+  /* stone base + post */
+  ctx.fillStyle = "#4A3540";
+  ctx.fillRect(-13, 10, 26, 6);
+  ctx.fillRect(-4, -2, 8, 13);
+  /* light box */
+  ctx.fillStyle = L.lit ? "#FFE9A8" : "#241720";
+  ctx.strokeStyle = "#5A4350"; ctx.lineWidth = 2;
+  ctx.fillRect(-9, -14, 18, 13); ctx.strokeRect(-9, -14, 18, 13);
+  if (L.lit) { ctx.fillStyle = "#F2C14E"; ctx.beginPath(); ctx.arc(0, -7.5, 3.2 + Math.sin(t * 0.01 + L.y) * 0.5, 0, Math.PI * 2); ctx.fill(); }
+  /* roof */
+  ctx.fillStyle = "#33222C";
+  ctx.beginPath(); ctx.moveTo(-14, -14); ctx.lineTo(0, -23); ctx.lineTo(14, -14); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#F2C14E"; ctx.beginPath(); ctx.arc(0, -23, 2, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+function drawGoldenPetal(gp, t) {
+  ctx.save(); ctx.translate(gp.x, gp.y); ctx.rotate(Math.sin(gp.t * 2.4) * 0.7);
+  var pulse = 1 + Math.sin(t * 0.008) * 0.18;
+  ctx.scale(pulse, pulse);
+  ctx.shadowColor = "#F2C14E"; ctx.shadowBlur = 26;
+  ctx.fillStyle = "#F2C14E"; drawPetalShape(13);
+  ctx.fillStyle = "#FFE9A8"; drawPetalShape(8);
+  ctx.restore();
 }
 function draw(t, rawDt) {
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -915,12 +1249,14 @@ function draw(t, rawDt) {
 
   drawBackground(t, rawDt);
   /* arena boundary glow */
-  ctx.strokeStyle = "rgba(165,243,252,0.30)"; ctx.lineWidth = 2;
-  ctx.shadowColor = "#A5F3FC"; ctx.shadowBlur = 16;
+  ctx.strokeStyle = "rgba(255,183,197,0.28)"; ctx.lineWidth = 2;
+  ctx.shadowColor = "#FFF3E4"; ctx.shadowBlur = 16;
   ctx.strokeRect(5, 5, W - 10, H - 10);
   ctx.shadowBlur = 0;
 
   var i, o;
+  if (state === "playing" || state === "paused" || state === "over") { for (i = 0; i < lanterns.length; i++) drawLantern(lanterns[i], t); }
+  if (goldenPetal && state === "playing") drawGoldenPetal(goldenPetal, t);
   for (i = 0; i < pickups.length; i++) drawPickup(pickups[i]);
   for (i = 0; i < afterimages.length; i++) { o = afterimages[i]; if (o.active) drawShip(o.x, o.y, o.ang, o.life / 0.3 * 0.5, true); }
   for (i = 0; i < enemies.length; i++) drawEnemy(enemies[i]);
@@ -937,19 +1273,21 @@ function draw(t, rawDt) {
       }
     }
     if (player.shield > 0) {
-      ctx.strokeStyle = "rgba(165,243,252," + (0.45 + Math.sin(t * 0.008) * 0.2) + ")";
-      ctx.lineWidth = 2; ctx.shadowColor = "#A5F3FC"; ctx.shadowBlur = 12;
+      ctx.strokeStyle = "rgba(255,243,228," + (0.45 + Math.sin(t * 0.008) * 0.2) + ")";
+      ctx.lineWidth = 2; ctx.shadowColor = "#FFF3E4"; ctx.shadowBlur = 12;
       ctx.beginPath(); ctx.arc(player.x, player.y, player.r + 10, 0, Math.PI * 2); ctx.stroke();
       ctx.shadowBlur = 0;
     }
   }
   /* bullets */
-  ctx.fillStyle = "#FFD9A0"; ctx.shadowColor = "#FF9A54"; ctx.shadowBlur = 8;
+  ctx.fillStyle = "#FFE9A8"; ctx.shadowColor = "#F2C14E"; ctx.shadowBlur = 8;
   for (i = 0; i < bullets.length; i++) { o = bullets[i]; if (!o.active) continue;
     ctx.beginPath(); ctx.arc(o.x, o.y, 3.2, 0, Math.PI * 2); ctx.fill(); }
-  ctx.fillStyle = "#FB3E81"; ctx.shadowColor = "#FB3E81";
+  ctx.fillStyle = "#E4577A"; ctx.shadowColor = "#E4577A";
   for (i = 0; i < eBullets.length; i++) { o = eBullets[i]; if (!o.active) continue;
-    ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2); ctx.fill(); }
+    /* rose thorn-bolt: small diamond */
+    ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(Math.atan2(o.vy, o.vx));
+    ctx.beginPath(); ctx.moveTo(o.r + 2, 0); ctx.lineTo(0, o.r * 0.62); ctx.lineTo(-o.r - 2, 0); ctx.lineTo(0, -o.r * 0.62); ctx.closePath(); ctx.fill(); ctx.restore(); }
   ctx.shadowBlur = 0;
   /* particles */
   for (i = 0; i < particles.length; i++) { o = particles[i]; if (!o.active) continue;
@@ -963,7 +1301,7 @@ function draw(t, rawDt) {
     ctx.globalAlpha = Math.min(1, o.life / 0.3);
     ctx.fillStyle = o.color; ctx.fillText(o.text, 0, 0); ctx.restore(); }
   ctx.globalAlpha = 1;
-  /* title-screen idle ship */
+  /* title-screen idle crane */
   if (state === "title" || state === "entry" || state === "welcome") {
     var ix = W * 0.87 + Math.sin(t * 0.0007) * 14, iy = H * 0.13 + Math.cos(t * 0.0009) * 9;
     player.x = ix; player.y = iy; player.ang = Math.PI * 0.78 + Math.sin(t * 0.0011) * 0.16;
@@ -973,7 +1311,7 @@ function draw(t, rawDt) {
       if (tp) { var bk = player.ang + Math.PI;
         tp.x = ix + Math.cos(bk) * 14; tp.y = iy + Math.sin(bk) * 14;
         tp.vx = Math.cos(bk) * 55 + (Math.random() - 0.5) * 16; tp.vy = Math.sin(bk) * 55 + (Math.random() - 0.5) * 16;
-        tp.max = tp.life = 0.5; tp.size = 2.2; tp.color = "#FF9A54"; }
+        tp.max = tp.life = 0.5; tp.size = 2.2; tp.color = "#F2C14E"; }
     }
     updateFx(0.016);
     for (i = 0; i < particles.length; i++) { o = particles[i]; if (!o.active) continue;
@@ -983,9 +1321,9 @@ function draw(t, rawDt) {
   }
   /* aim reticle */
   if (state === "playing" && !touchAim.active) {
-    ctx.strokeStyle = "rgba(165,243,252,0.85)"; ctx.lineWidth = 1.6;
+    ctx.strokeStyle = "rgba(255,183,197,0.9)"; ctx.lineWidth = 1.6;
     ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 9, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = "#A5F3FC"; ctx.fillRect(mouse.x - 1, mouse.y - 1, 2, 2);
+    ctx.fillStyle = "#FFF3E4"; ctx.fillRect(mouse.x - 1, mouse.y - 1, 2, 2);
   }
 }
 
@@ -1016,8 +1354,11 @@ function startGame() {
   resetPools();
   player = newPlayer();
   player.x = W / 2; player.y = H / 2;
-  score = 0; kills = 0; comboChain = 0; comboTimer = 0;
+  score = 0; kills = 0; comboChain = 0; comboTimer = 0; lastComboRank = 1;
   wave = 0; shakeTrauma = 0; hitStop = 0; zoomPulse = 0;
+  runSeed = Math.floor(Math.random() * 4);
+  blessing.kind = null; blessing.timer = 0; goldenPetal = null; goldenTimer = 40 + Math.random() * 10;
+  resetLanterns();
   el.score.textContent = "0"; el.combo.textContent = "";
   el.title.classList.add("hidden"); el.over.classList.add("hidden"); el.pause.classList.add("hidden");
   el.hud.classList.remove("hidden"); el.touch.classList.remove("hidden");
@@ -1026,8 +1367,8 @@ function startGame() {
 }
 function gameOver() {
   player.alive = false;
-  feedback("large", player.x, player.y, "#FF9A54");
-  feedback("large", player.x, player.y, "#FB3E81");
+  feedback("large", player.x, player.y, "#F2C14E");
+  feedback("large", player.x, player.y, "#E4577A");
   sfx.bigBoom();
   if (score > best.score) { best.score = score; }
   updateBestWave(); saveBest();
@@ -1124,7 +1465,7 @@ function setAuthMode(mode) {
   tabSignup.setAttribute("aria-selected", String(!isLogin));
   authSubmit.textContent = isLogin ? "Log in" : "Create account";
   authPass.setAttribute("autocomplete", isLogin ? "current-password" : "new-password");
-  authSwitchText.textContent = isLogin ? "New to the void?" : "Already have a profile?";
+  authSwitchText.textContent = isLogin ? "New to the grove?" : "Already have a profile?";
   authSwitchBtn.textContent = isLogin ? "Create an account" : "Log in instead";
   clearAuthError();
 }
@@ -1173,19 +1514,19 @@ authForm.addEventListener("submit", function (e) {
   clearAuthError();
   var name = authName.value.trim();
   var pass = authPass.value;
-  if (!name || !pass) { showAuthError("Please enter your pilot name and password."); return; }
+  if (!name || !pass) { showAuthError("Please enter your guardian name and password."); return; }
   if (pass.length < 4) { showAuthError("Your password needs at least 4 characters."); return; }
   var acc = getAccounts();
   var existingKey = findAccountKey(acc, name);
   if (authMode === "signup") {
-    if (existingKey) { showAuthError("That pilot name is already taken. Try logging in instead."); return; }
+    if (existingKey) { setAuthMode("login"); showAuthError("That guardian name is already taken — switched you to Log in."); return; }
     acc[name] = { password: pass, created: Date.now() };
     saveAccounts(acc);
     authPass.value = "";
     enterAsPilot(name, false);
   } else {
-    if (!existingKey) { showAuthError("We could not find that pilot name. Check the spelling, or create an account."); return; }
-    if (acc[existingKey].password !== pass) { showAuthError("That password does not match this pilot. Please try again."); return; }
+    if (!existingKey) { setAuthMode("signup"); showAuthError("No guardian named \u201C" + name + "\u201D yet — switched you to Create account, with your details kept. Tap Create account to claim the name."); return; }
+    if (acc[existingKey].password !== pass) { showAuthError("That password does not match this guardian. Please try again."); return; }
     authPass.value = "";
     enterAsPilot(existingKey, false);
   }
@@ -1233,6 +1574,7 @@ function resize() {
   W = window.innerWidth; H = window.innerHeight;
   canvas.width = Math.floor(W * DPR); canvas.height = Math.floor(H * DPR);
   buildBackground();
+  layoutLanterns();
   if (player) { player.x = Math.min(player.x, W - 20); player.y = Math.min(player.y, H - 20); }
 }
 window.addEventListener("resize", resize);
@@ -1240,7 +1582,10 @@ document.addEventListener("visibilitychange", function () { if (document.hidden 
 resize();
 /* session on load: skip straight to title if already logged in */
 (function initSession() {
-  setAuthMode("login");
+  if (!storageWorks) {
+    var note = $("auth-note");
+    if (note) note.textContent = "This browser isn't keeping profiles between visits — your guardian still works for this session.";
+  }
   var saved = getSession();
   if (saved) {
     var acc = getAccounts();
@@ -1248,12 +1593,17 @@ resize();
     if (key) { currentPilot = key; best = loadBest(); showTitle(true); return; }
     setSession(null);
   }
+  /* First run: no pilots saved yet, so open on Create account — the old
+     default opened on Log in, where a first login could only fail. */
+  var hasAccounts = false, all = getAccounts();
+  for (var k in all) { if (Object.prototype.hasOwnProperty.call(all, k)) { hasAccounts = true; break; } }
+  setAuthMode(hasAccounts ? "login" : "signup");
   showEntry();
 })();
 rafId = requestAnimationFrame(loop);
 
 /* ---------- test hooks (used by automated verification) ---------- */
-window.__starfall = {
+window.__petalfall = {
   get state() { return state; },
   get pilot() { return currentPilot; },
   get best() { return best; },
@@ -1264,12 +1614,25 @@ window.__starfall = {
   get combo() { return comboMult(); },
   get enemies() { return enemies; },
   start: startGame,
+  get lanterns() { return lanterns; },
+  get litCount() { return litCount(); },
+  get blessing() { return blessing; },
+  get goldenPetal() { return goldenPetal; },
+  get waveType() { return waveType; },
+  get comboRank() { return COMBO_RANKS[comboMult()] || ""; },
+  spawnGolden: spawnGoldenPetal,
+  grantBlessing: grantBlessing,
+  dimLantern: function (i) { dimLantern(i, lanterns[i].x, lanterns[i].y); },
+  relightLantern: relightLantern,
+  setPlayerPos: function (x, y) { player.x = x; player.y = y; },
+  spawnLanternWisp: function (i) { var e = spawnEnemy("chaser", lanterns[i].x + 60, lanterns[i].y); e.targetLantern = i; return e; },
   spawn: spawnEnemy,
   damage: damagePlayer,
   dash: tryDash,
   setWave: function (n) { enemies.length = 0; spawnQueue = []; startWave(n); },
   killAll: function () { for (var i = enemies.length - 1; i >= 0; i--) killEnemy(enemies[i], i); }
 };
+window.__starfall = window.__petalfall;
 </script>
 </body>
 </html>
