@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a0f">
+  <title>ROCKSTAR — Play beyond ordinary</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090a0f;
+      --panel: #11131b;
+      --muted: #9a9daf;
+      --text: #f5f5f7;
+      --pink: #fb3e81;
+      --orange: #ff9a54;
+      --line: rgba(255,255,255,.1);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 75% 15%, rgba(251,62,129,.12), transparent 35%),
+        radial-gradient(ellipse at 10% 85%, rgba(255,154,84,.08), transparent 30%),
+        var(--bg);
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+    .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--text); text-decoration: none; font-size: 19px; font-weight: 900; letter-spacing: .12em; }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 9px; background: linear-gradient(135deg, var(--pink), var(--orange)); color: #141018; font-size: 17px; }
+    .top-note { color: var(--muted); font-size: 13px; }
+    main { min-height: calc(100vh - 83px); display: grid; align-items: center; padding: 48px 0 64px; }
+
+    .auth-layout { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(42px, 8vw, 110px); }
+    .eyebrow { color: var(--orange); font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; }
+    h1 { max-width: 600px; margin: 18px 0; font-size: clamp(52px, 8vw, 94px); line-height: .94; letter-spacing: -.075em; }
+    h1 span { color: var(--pink); }
+    .intro { max-width: 440px; color: #b6b7c3; font-size: 16px; line-height: 1.75; }
+    .feature-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .feature { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; color: #d7d7de; font-size: 12px; }
+
+    .card { padding: clamp(23px, 4vw, 36px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(155deg, rgba(24,26,37,.96), rgba(15,16,23,.96)); box-shadow: 0 26px 90px rgba(0,0,0,.35); }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 26px; padding: 5px; border-radius: 12px; background: #090a0f; }
+    .tab { border: 0; border-radius: 8px; padding: 10px; color: var(--muted); background: transparent; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .tab[aria-selected="true"] { color: var(--text); background: #242632; }
+    .card h2 { margin: 0 0 7px; font-size: 24px; letter-spacing: -.04em; }
+    .card-copy { margin: 0 0 23px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .field { display: grid; gap: 8px; margin-bottom: 16px; }
+    .field[hidden] { display: none; }
+    .field label { color: #d9d9e0; font-size: 12px; font-weight: 700; }
+    .field input { width: 100%; border: 1px solid #30323e; border-radius: 10px; padding: 12px 13px; color: var(--text); background: #0c0d13; }
+    .field input::placeholder { color: #6d6f7c; }
+    .primary, .secondary { width: 100%; min-height: 46px; border: 0; border-radius: 10px; cursor: pointer; font-weight: 800; transition: transform .15s ease, filter .15s ease; }
+    .primary { color: #170d13; background: linear-gradient(100deg, var(--pink), var(--orange)); }
+    .secondary { border: 1px solid var(--line); background: #20222d; }
+    .primary:hover, .secondary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .form-message { min-height: 19px; margin: 12px 0 0; color: #ff9cab; font-size: 12px; line-height: 1.5; }
+    .privacy-note { margin: 13px 0 0; color: #777987; text-align: center; font-size: 11px; line-height: 1.5; }
+
+    .lobby { display: none; }
+    .lobby-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 30px; }
+    .welcome { margin: 9px 0 0; font-size: clamp(30px, 5vw, 52px); letter-spacing: -.06em; }
+    .welcome span { color: var(--pink); }
+    .signout { border: 1px solid var(--line); border-radius: 9px; padding: 10px 14px; background: #171922; cursor: pointer; font-size: 12px; }
+    .game-panel { display: grid; grid-template-columns: 1fr 310px; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: rgba(17,19,27,.88); }
+    .game-area { min-width: 0; padding: 20px; }
+    .game-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .game-title-row h2 { margin: 0; font-size: 17px; }
+    .score { color: var(--orange); font-size: 13px; font-weight: 800; }
+    canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid rgba(255,255,255,.09); border-radius: 12px; background: #0b0c14; }
+    .game-actions { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+    .game-actions button { width: auto; min-width: 130px; padding: 0 16px; }
+    .game-hint { color: var(--muted); font-size: 11px; }
+    .side-panel { padding: 24px; border-left: 1px solid var(--line); background: rgba(255,255,255,.015); }
+    .side-panel h3 { margin: 0 0 12px; font-size: 14px; }
+    .side-panel p { color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .stat { display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .stat strong { color: var(--text); }
+    .mobile-controls { display: none; gap: 9px; justify-content: center; margin-top: 12px; }
+    .mobile-controls button { width: 54px; height: 42px; border: 1px solid var(--line); border-radius: 9px; background: #20222d; touch-action: none; }
+
+    @media (max-width: 780px) {
+      .auth-layout { grid-template-columns: 1fr; gap: 32px; max-width: 520px; margin: 0 auto; }
+      .auth-copy { text-align: center; }
+      .intro { margin-left: auto; margin-right: auto; }
+      .feature-row { justify-content: center; }
+      .game-panel { grid-template-columns: 1fr; }
+      .side-panel { border-top: 1px solid var(--line); border-left: 0; }
+    }
+    @media (max-width: 480px) {
+      .shell { width: min(100% - 30px, 1120px); }
+      .topbar { height: 68px; }
+      .top-note { font-size: 11px; }
+      main { min-height: calc(100vh - 69px); padding: 35px 0; }
+      .game-area { padding: 13px; }
+      .side-panel { padding: 18px; }
+      .mobile-controls { display: flex; }
+      .game-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#" aria-label="ROCKSTAR home"><span class="brand-mark" aria-hidden="true">R</span> ROCKSTAR</a>
+    <span class="top-note" id="header-note">YOUR NEXT LEVEL STARTS HERE</span>
+  </header>
+
+  <main class="shell">
+    <section class="auth-layout" id="auth-view" aria-label="Sign in to ROCKSTAR">
+      <div class="auth-copy">
+        <div class="eyebrow">A new kind of play</div>
+        <h1>Play beyond<br>the <span>ordinary.</span></h1>
+        <p class="intro">Welcome to ROCKSTAR. Jump into quick games, chase a new high score, and make every break legendary.</p>
+        <div class="feature-row" aria-label="Features">
+          <span class="feature">✦ Quick to play</span>
+          <span class="feature">⌁ Track your best</span>
+          <span class="feature">◈ Made for fun</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tabs" role="tablist" aria-label="Account options">
+          <button class="tab" id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="account-form">Log in</button>
+          <button class="tab" id="signup-tab" type="button" role="tab" aria-selected="false" aria-controls="account-form">Create account</button>
+        </div>
+        <h2 id="form-title">Welcome back</h2>
+        <p class="card-copy" id="form-copy">Log in to get back in the game.</p>
+        <form id="account-form">
+          <div class="field" id="name-field" hidden>
+            <label for="player-name">Player name</label>
+            <input id="player-name" name="name" type="text" maxlength="24" autocomplete="nickname" placeholder="How should we call you?">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required minlength="8" autocomplete="current-password" placeholder="At least 8 characters">
+          </div>
+          <button class="primary" id="submit-button" type="submit">Log in</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+        <p class="privacy-note">Prototype accounts are stored only in this browser. This is not secure production authentication.</p>
+      </div>
+    </section>
+
+    <section class="lobby" id="lobby-view" aria-label="ROCKSTAR game lobby">
+      <div class="lobby-header">
+        <div>
+          <div class="eyebrow">Player lobby</div>
+          <h1 class="welcome">Let's play, <span id="welcome-name">Player</span>.</h1>
+        </div>
+        <button class="signout" id="signout-button" type="button">Log out</button>
+      </div>
+      <div class="game-panel">
+        <div class="game-area">
+          <div class="game-title-row">
+            <h2>STAR DASH <span style="color:var(--muted);font-weight:500">/ Asteroid run</span></h2>
+            <span class="score" id="score-label">SCORE 000</span>
+          </div>
+          <canvas id="game-canvas" width="960" height="540" aria-label="Star Dash game. Move your ship and dodge asteroids."></canvas>
+          <div class="game-actions">
+            <button class="primary" id="start-button" type="button">Start game</button>
+            <span class="game-hint">Move with ← → or A / D · Dodge the asteroids</span>
+          </div>
+          <div class="mobile-controls" aria-label="Touch controls">
+            <button type="button" data-move="left" aria-label="Move left">←</button>
+            <button type="button" data-move="right" aria-label="Move right">→</button>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <h3>How to play</h3>
+          <p>Take control of your starship and weave through the asteroid field. The longer you survive, the faster the rocks fly. How high can you score?</p>
+          <div class="stat"><span>Personal best</span><strong id="best-score">0</strong></div>
+          <div class="stat"><span>Controls</span><strong>← → / A D</strong></div>
+          <div class="stat"><span>Tip</span><strong>Keep moving!</strong></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const USERS_KEY = "rockstar-demo-users-v1";
+    const SESSION_KEY = "rockstar-demo-session-v1";
+    const BEST_KEY = "rockstar-star-dash-best-v1";
+
+    const authView = document.getElementById("auth-view");
+    const lobbyView = document.getElementById("lobby-view");
+    const loginTab = document.getElementById("login-tab");
+    const signupTab = document.getElementById("signup-tab");
+    const form = document.getElementById("account-form");
+    const nameField = document.getElementById("name-field");
+    const playerNameInput = document.getElementById("player-name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const formTitle = document.getElementById("form-title");
+    const formCopy = document.getElementById("form-copy");
+    const submitButton = document.getElementById("submit-button");
+    const formMessage = document.getElementById("form-message");
+    const headerNote = document.getElementById("header-note");
+    let mode = "login";
+
+    function readUsers() {
+      const savedUsers = localStorage.getItem(USERS_KEY);
+      if (!savedUsers) return {};
+      try {
+        const users = JSON.parse(savedUsers);
+        if (users && typeof users === "object" && !Array.isArray(users)) return users;
+      } catch (error) {
+        throw new Error("Saved browser accounts could not be read. Clear this site's ROCKSTAR data and try again.");
+      }
+      throw new Error("Saved browser accounts are invalid. Clear this site's ROCKSTAR data and try again.");
+    }
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      const creating = mode === "signup";
+      loginTab.setAttribute("aria-selected", String(!creating));
+      signupTab.setAttribute("aria-selected", String(creating));
+      nameField.hidden = !creating;
+      playerNameInput.required = creating;
+      passwordInput.autocomplete = creating ? "new-password" : "current-password";
+      formTitle.textContent = creating ? "Create your account" : "Welcome back";
+      formCopy.textContent = creating ? "Pick a player name and join the game." : "Log in to get back in the game.";
+      submitButton.textContent = creating ? "Create account" : "Log in";
+      formMessage.textContent = "";
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    signupTab.addEventListener("click", () => setMode("signup"));
+
+    async function hashPassword(password, salt) {
+      if (!window.crypto || !window.crypto.subtle) {
+        throw new Error("Secure browser hashing is unavailable. Open this page in a modern browser over localhost or HTTPS.");
+      }
+      const encoder = new TextEncoder();
+      const key = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
+      const bits = await crypto.subtle.deriveBits({
+        name: "PBKDF2",
+        salt,
+        iterations: 120000,
+        hash: "SHA-256"
+      }, key, 256);
+      return Array.from(new Uint8Array(bits), byte => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    function toHex(bytes) {
+      return Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function createAccount(email, password, name) {
+      const users = readUsers();
+      if (users[email]) throw new Error("An account with this email already exists. Try logging in.");
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      users[email] = { name, salt: toHex(salt), passwordHash: await hashPassword(password, salt) };
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      return users[email];
+    }
+
+    async function login(email, password) {
+      const user = readUsers()[email];
+      if (!user || typeof user.salt !== "string" || typeof user.passwordHash !== "string") {
+        throw new Error("We couldn't find that account. Check your email or create an account.");
+      }
+      const salt = new Uint8Array(user.salt.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+      const candidate = await hashPassword(password, salt);
+      if (candidate !== user.passwordHash) throw new Error("That password doesn't match. Please try again.");
+      return user;
+    }
+
+    function showLobby(email, user) {
+      sessionStorage.setItem(SESSION_KEY, email);
+      authView.style.display = "none";
+      lobbyView.style.display = "block";
+      document.getElementById("welcome-name").textContent = user.name || "Player";
+      headerNote.textContent = "WELCOME TO YOUR ARCADE";
+      updateBestScore();
+      drawIdleScreen();
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      formMessage.textContent = "";
+      submitButton.disabled = true;
+      submitButton.textContent = mode === "signup" ? "Creating..." : "Logging in...";
+      try {
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+        const user = mode === "signup"
+          ? await createAccount(email, password, playerNameInput.value.trim())
+          : await login(email, password);
+        showLobby(email, user);
+      } catch (error) {
+        formMessage.textContent = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = mode === "signup" ? "Create account" : "Log in";
+      }
+    });
+
+    document.getElementById("signout-button").addEventListener("click", () => {
+      sessionStorage.removeItem(SESSION_KEY);
+      lobbyView.style.display = "none";
+      authView.style.display = "grid";
+      headerNote.textContent = "YOUR NEXT LEVEL STARTS HERE";
+      passwordInput.value = "";
+      setMode("login");
+    });
+
+    const canvas = document.getElementById("game-canvas");
+    const ctx = canvas.getContext("2d");
+    const scoreLabel = document.getElementById("score-label");
+    const startButton = document.getElementById("start-button");
+    const keys = new Set();
+    let shipX = canvas.width / 2;
+    let rocks = [];
+    let stars = [];
+    let score = 0;
+    let running = false;
+    let animationId = 0;
+    let previousFrame = 0;
+    let gameStartedAt = 0;
+
+    function seedStars() {
+      stars = Array.from({ length: 75 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + .5,
+        speed: Math.random() * 24 + 12
+      }));
+    }
+
+    function updateBestScore() {
+      const best = Number(localStorage.getItem(BEST_KEY) || 0);
+      document.getElementById("best-score").textContent = String(best);
+    }
+
+    function drawShip() {
+      ctx.save();
+      ctx.translate(shipX, canvas.height - 65);
+      ctx.shadowColor = "#fb3e81";
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = "#ff6799";
+      ctx.beginPath();
+      ctx.moveTo(0, -22);
+      ctx.lineTo(17, 18);
+      ctx.lineTo(0, 10);
+      ctx.lineTo(-17, 18);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#fff2f7";
+      ctx.beginPath();
+      ctx.arc(0, 2, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawBackground(delta) {
+      ctx.fillStyle = "#0b0c14";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,255,255,.75)";
+      stars.forEach(star => {
+        if (running) star.y = (star.y + star.speed * delta / 1000) % canvas.height;
+        ctx.globalAlpha = .35 + star.size / 4;
+        ctx.fillRect(star.x, star.y, star.size, star.size);
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    function drawIdleScreen() {
+      seedStars();
+      drawBackground(0);
+      drawShip();
+      ctx.fillStyle = "rgba(255,255,255,.78)";
+      ctx.textAlign = "center";
+      ctx.font = "700 24px system-ui, sans-serif";
+      ctx.fillText("READY FOR LIFTOFF?", canvas.width / 2, canvas.height / 2 - 8);
+      ctx.fillStyle = "rgba(255,255,255,.48)";
+      ctx.font = "14px system-ui, sans-serif";
+      ctx.fillText("Press Start game to begin your run", canvas.width / 2, canvas.height / 2 + 22);
+      ctx.textAlign = "start";
+    }
+
+    function finishGame() {
+      running = false;
+      cancelAnimationFrame(animationId);
+      startButton.textContent = "Play again";
+      const best = Math.max(score, Number(localStorage.getItem(BEST_KEY) || 0));
+      localStorage.setItem(BEST_KEY, String(best));
+      updateBestScore();
+      drawBackground(0);
+      rocks.forEach(drawRock);
+      drawShip();
+      ctx.fillStyle = "rgba(8,9,15,.72)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#fff";
+      ctx.font = "800 32px system-ui, sans-serif";
+      ctx.fillText("RUN OVER", canvas.width / 2, canvas.height / 2 - 12);
+      ctx.fillStyle = "#ff9a54";
+      ctx.font = "600 17px system-ui, sans-serif";
+      ctx.fillText("Score: " + score + "  ·  Press Play again to retry", canvas.width / 2, canvas.height / 2 + 24);
+      ctx.textAlign = "start";
+    }
+
+    function drawRock(rock) {
+      ctx.save();
+      ctx.translate(rock.x, rock.y);
+      ctx.rotate(rock.rotation);
+      ctx.fillStyle = "#777b91";
+      ctx.strokeStyle = "#b5b6c1";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let point = 0; point < 8; point++) {
+        const angle = point * Math.PI / 4;
+        const radius = rock.radius * (point % 2 ? .82 : 1);
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (point === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function frame(timestamp) {
+      if (!running) return;
+      const delta = Math.min(timestamp - (previousFrame || timestamp), 40);
+      previousFrame = timestamp;
+      const seconds = (timestamp - gameStartedAt) / 1000;
+      const moveSpeed = 390 * delta / 1000;
+      if (keys.has("ArrowLeft") || keys.has("a")) shipX -= moveSpeed;
+      if (keys.has("ArrowRight") || keys.has("d")) shipX += moveSpeed;
+      shipX = Math.max(22, Math.min(canvas.width - 22, shipX));
+
+      if (Math.random() < Math.min(.035, .012 + seconds / 8000)) {
+        const radius = 13 + Math.random() * 17;
+        rocks.push({
+          x: radius + Math.random() * (canvas.width - radius * 2),
+          y: -radius,
+          radius,
+          speed: 145 + Math.random() * 100 + Math.min(seconds * 3, 170),
+          rotation: Math.random() * Math.PI
+        });
+      }
+      rocks.forEach(rock => {
+        rock.y += rock.speed * delta / 1000;
+        rock.rotation += delta / 1400;
+      });
+      rocks = rocks.filter(rock => rock.y < canvas.height + rock.radius);
+      score = Math.floor(seconds * 10);
+      scoreLabel.textContent = "SCORE " + String(score).padStart(3, "0");
+
+      drawBackground(delta);
+      rocks.forEach(drawRock);
+      drawShip();
+      if (rocks.some(rock => {
+        const dx = rock.x - shipX;
+        const dy = rock.y - (canvas.height - 65);
+        return Math.hypot(dx, dy) < rock.radius + 13;
+      })) {
+        finishGame();
+        return;
+      }
+      animationId = requestAnimationFrame(frame);
+    }
+
+    startButton.addEventListener("click", () => {
+      if (running) return;
+      score = 0;
+      rocks = [];
+      shipX = canvas.width / 2;
+      previousFrame = 0;
+      seedStars();
+      scoreLabel.textContent = "SCORE 000";
+      startButton.textContent = "Game running...";
+      gameStartedAt = performance.now();
+      running = true;
+      animationId = requestAnimationFrame(frame);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (["ArrowLeft", "ArrowRight", " "].includes(event.key)) event.preventDefault();
+      keys.add(event.key.toLowerCase());
+    });
+    document.addEventListener("keyup", event => keys.delete(event.key.toLowerCase()));
+    document.querySelectorAll("[data-move]").forEach(button => {
+      const key = button.dataset.move === "left" ? "ArrowLeft" : "ArrowRight";
+      button.addEventListener("pointerdown", event => {
+        event.preventDefault();
+        keys.add(key);
+        button.setPointerCapture(event.pointerId);
+      });
+      const release = () => keys.delete(key);
+      button.addEventListener("pointerup", release);
+      button.addEventListener("pointercancel", release);
+      button.addEventListener("lostpointercapture", release);
+    });
+
+    try {
+      const email = sessionStorage.getItem(SESSION_KEY);
+      const user = email && readUsers()[email];
+      if (user) showLobby(email, user);
+    } catch (error) {
+      console.error("Could not restore the local ROCKSTAR demo session.", error);
+    }
+  </script>
+</body>
+</html>
